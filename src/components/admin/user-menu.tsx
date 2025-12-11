@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   user: {
-    email: string;
+    email?: string;
     id: string;
   } | null;
 }
@@ -44,8 +44,8 @@ export function UserMenu({ user }: UserMenuProps) {
         className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-gray-100 transition-colors"
       >
         <div className="hidden text-right sm:block">
-          <p className="text-sm font-semibold text-gray-900">{user.email.split("@")[0]}</p>
-          <p className="text-xs text-gray-500">{user.email}</p>
+          <p className="text-sm font-semibold text-gray-900">{user.email?.split("@")[0] || 'User'}</p>
+          <p className="text-xs text-gray-500">{user.email || 'No email'}</p>
         </div>
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
           <User className="h-5 w-5" />
@@ -60,7 +60,7 @@ export function UserMenu({ user }: UserMenuProps) {
       {isOpen && (
         <div className="absolute right-0 mt-2 w-56 rounded-lg border border-gray-200 bg-white shadow-lg">
           <div className="p-3 border-b border-gray-100">
-            <p className="text-sm font-semibold text-gray-900">{user.email}</p>
+            <p className="text-sm font-semibold text-gray-900">{user.email || 'No email'}</p>
             <p className="text-xs text-gray-500 mt-1">Administrator</p>
           </div>
 

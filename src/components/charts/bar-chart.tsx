@@ -3,6 +3,7 @@
 import {
   BarChart as RechartsBarChart,
   Bar,
+  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -13,10 +14,13 @@ import {
 import { ChartLine, ChartDataPoint } from '@/types/analytics';
 
 interface BarChartProps {
-  data: ChartDataPoint[];
-  bars: ChartLine[];
+  data: any[]; // Accept any array of objects
+  bars?: ChartLine[]; // Optional - for multi-bar charts
+  dataKey?: string; // Key for the data value (for single bar)
+  nameKey?: string; // Key for the name/label
   height?: number;
   layout?: 'vertical' | 'horizontal';
+  orientation?: 'vertical' | 'horizontal'; // Alias for layout
   showGrid?: boolean;
   showLegend?: boolean;
 }
@@ -24,10 +28,13 @@ interface BarChartProps {
 export function BarChart({
   data,
   bars,
+  dataKey,
+  nameKey = 'name',
   height = 300,
-  layout = 'horizontal',
+  layout,
+  orientation,
   showGrid = true,
-  showLegend = true,
+  showLegend = false,
 }: BarChartProps) {
   if (!data || data.length === 0) {
     return (
@@ -40,23 +47,29 @@ export function BarChart({
     );
   }
 
+  // Use orientation as fallback for layout
+  const chartLayout = layout || orientation || 'horizontal';
+
   const margin =
-    layout === 'vertical'
-      ? { top: 5, right: 30, left: 60, bottom: 5 }
+    chartLayout === 'vertical'
+      ? { top: 5, right: 30, left: 120, bottom: 5 }
       : { top: 5, right: 30, left: 20, bottom: 5 };
+
+  // For single bar charts with dataKey
+  const isSingleBar = dataKey && !bars;
 
   return (
     <ResponsiveContainer width="100%" height={height}>
       <RechartsBarChart
         data={data}
-        layout={layout === 'vertical' ? 'vertical' : 'horizontal'}
+        layout={chartLayout === 'vertical' ? 'vertical' : 'horizontal'}
         margin={margin}
       >
         {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#E5E0D8" />}
-        {layout === 'horizontal' ? (
+        {chartLayout === 'horizontal' ? (
           <>
             <XAxis
-              dataKey="date"
+              dataKey={nameKey || 'date'}
               stroke="#4A4A4A"
               tick={{ fill: '#4A4A4A', fontSize: 12 }}
               tickLine={{ stroke: '#E5E0D8' }}
@@ -76,12 +89,12 @@ export function BarChart({
               tickLine={{ stroke: '#E5E0D8' }}
             />
             <YAxis
-              dataKey="date"
+              dataKey={nameKey || 'date'}
               type="category"
               stroke="#4A4A4A"
               tick={{ fill: '#4A4A4A', fontSize: 12 }}
               tickLine={{ stroke: '#E5E0D8' }}
-              width={100}
+              width={150}
             />
           </>
         )}
@@ -105,15 +118,26 @@ export function BarChart({
             iconType="rect"
           />
         )}
-        {bars.map((bar) => (
+        {isSingleBar ? (
           <Bar
-            key={bar.key}
-            dataKey={bar.key}
-            fill={bar.color}
-            name={bar.name}
+            dataKey={dataKey}
             radius={[4, 4, 0, 0]}
-          />
-        ))}
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color || '#151A4A'} />
+            ))}
+          </Bar>
+        ) : (
+          bars?.map((bar) => (
+            <Bar
+              key={bar.key}
+              dataKey={bar.key}
+              fill={bar.color}
+              name={bar.name}
+              radius={[4, 4, 0, 0]}
+            />
+          ))
+        )}
       </RechartsBarChart>
     </ResponsiveContainer>
   );
