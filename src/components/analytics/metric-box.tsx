@@ -22,8 +22,8 @@ const colorClasses = {
 };
 
 const textColors = {
-  navy: 'text-[#151A4A]',
-  gold: 'text-[#C9A961]',
+  navy: 'text-white',
+  gold: 'text-white',
   green: 'text-green-900',
   orange: 'text-orange-900',
   purple: 'text-purple-900',
@@ -31,8 +31,17 @@ const textColors = {
 };
 
 const labelColors = {
-  navy: 'text-[#151A4A]/70',
-  gold: 'text-[#C9A961]/70',
+  navy: 'text-white/80',
+  gold: 'text-white/80',
+  green: 'text-green-700',
+  orange: 'text-orange-700',
+  purple: 'text-purple-700',
+  blue: 'text-blue-700',
+};
+
+const iconColors = {
+  navy: 'text-white',
+  gold: 'text-white',
   green: 'text-green-700',
   orange: 'text-orange-700',
   purple: 'text-purple-700',
@@ -46,7 +55,7 @@ export function MetricBox({ title, value, change, color, icon, tooltip }: Metric
         <Tooltip.Trigger asChild>
           <div className={`text-center p-6 rounded-xl bg-gradient-to-br ${colorClasses[color]} border hover:shadow-md transition-all duration-300 cursor-pointer group`}>
             <div className="flex items-center justify-center mb-3">
-              <div className={`${textColors[color]} h-6 w-6`}>{icon}</div>
+              <div className={`${iconColors[color]} h-6 w-6`}>{icon}</div>
             </div>
             <p className={`text-sm ${labelColors[color]} font-medium mb-2`}>{title}</p>
             <p className={`text-3xl font-bold ${textColors[color]}`}>

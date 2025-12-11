@@ -26,13 +26,13 @@ export function ComparisonBadge({ value, label, size = 'md' }: ComparisonBadgePr
   };
 
   const colorClass = isNeutral
-    ? 'text-gray-600'
+    ? 'text-gray-700 bg-gray-100'
     : isPositive
-    ? 'text-green-600'
-    : 'text-red-600';
+    ? 'text-green-700 bg-green-100'
+    : 'text-red-700 bg-red-100';
 
   return (
-    <div className={`flex items-center gap-1 font-medium ${sizeClasses[size]} ${colorClass}`}>
+    <div className={`inline-flex items-center gap-1 font-medium ${sizeClasses[size]} ${colorClass} px-2 py-0.5 rounded-full`}>
       {isNeutral ? (
         <Minus className={iconSize[size]} />
       ) : isPositive ? (
