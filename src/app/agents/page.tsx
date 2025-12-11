@@ -155,6 +155,7 @@ export default function AgentsPage() {
         highlightedWord="Experts"
         description="Behind every successful home transaction is a dedicated team of professionals. Get to know the people who will guide you through your real estate journey."
         primaryCTA={{ text: "Contact Our Team", href: "/contact" }}
+        backgroundImage="/agents/KC Team Image 1.jpg"
       />
 
       {/* Team Intro */}
