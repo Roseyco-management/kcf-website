@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Bell } from "lucide-react";
 import { UserMenu } from "./user-menu";
 
 interface AdminHeaderProps {
@@ -37,15 +36,6 @@ export function AdminHeader({ user }: AdminHeaderProps) {
 
       {/* Right Side - Actions */}
       <div className="flex items-center gap-4">
-        {/* Notifications */}
-        <button
-          className="relative rounded-lg p-2 hover:bg-[#F8F6F2] transition-colors"
-          aria-label="Notifications"
-        >
-          <Bell className="h-6 w-6 text-[#4A4A4A]" />
-          <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500"></span>
-        </button>
-
         {/* User Menu */}
         <UserMenu user={user} />
       </div>
