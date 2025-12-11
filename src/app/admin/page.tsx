@@ -19,7 +19,6 @@ import { LineChart } from '@/components/charts/line-chart';
 import { BarChart } from '@/components/charts/bar-chart';
 import { getRoseyCoAnalytics } from '@/lib/roseyco-analytics';
 import {
-  calculateMockChanges,
   generateSparklineData,
   generateDetailedData,
 } from '@/lib/analytics/fetch-analytics';
@@ -30,7 +29,6 @@ export default async function AdminDashboard() {
   // Fetch real analytics data
   const period = '30d';
   const roseyCoData = await getRoseyCoAnalytics(period);
-  const changes = calculateMockChanges();
 
   // Extract data with fallbacks
   const ga4 = roseyCoData?.summary.ga4;
@@ -39,19 +37,19 @@ export default async function AdminDashboard() {
   const clarity = roseyCoData?.summary.clarity;
 
   // Calculate overview metrics
-  const totalVisits = safeNumber(ga4?.sessions, 1456);
-  const totalLeads = safeNumber(googleAds?.conversions, Math.floor(totalVisits * 0.019));
-  const conversionRate = totalVisits > 0 ? ((totalLeads / totalVisits) * 100).toFixed(2) : '1.90';
-  const avgSessionDuration = safeNumber(ga4?.avgSessionDuration, 245);
+  const totalVisits = safeNumber(ga4?.sessions, 0);
+  const totalLeads = safeNumber(googleAds?.conversions, 0);
+  const conversionRate = totalVisits > 0 ? ((totalLeads / totalVisits) * 100).toFixed(2) : '0.00';
+  const avgSessionDuration = safeNumber(ga4?.avgSessionDuration, 0);
 
-  // Prepare top pages data with change percentages
+  // Prepare top pages data
   const topPages: TopPage[] = ga4?.pageViews
     ? [
-        { path: '/', title: 'Home', views: Math.floor(ga4.pageViews * 0.27), change: 12.5 },
-        { path: '/how-it-works', title: 'How It Works', views: Math.floor(ga4.pageViews * 0.15), change: 8.3 },
-        { path: '/contact', title: 'Contact', views: Math.floor(ga4.pageViews * 0.08), change: -3.2 },
-        { path: '/about', title: 'About Us', views: Math.floor(ga4.pageViews * 0.06), change: 15.7 },
-        { path: '/properties', title: 'Properties', views: Math.floor(ga4.pageViews * 0.05), change: 22.1 },
+        { path: '/', title: 'Home', views: Math.floor(ga4.pageViews * 0.27) },
+        { path: '/how-it-works', title: 'How It Works', views: Math.floor(ga4.pageViews * 0.15) },
+        { path: '/contact', title: 'Contact', views: Math.floor(ga4.pageViews * 0.08) },
+        { path: '/about', title: 'About Us', views: Math.floor(ga4.pageViews * 0.06) },
+        { path: '/properties', title: 'Properties', views: Math.floor(ga4.pageViews * 0.05) },
       ]
     : [];
 
@@ -104,7 +102,6 @@ export default async function AdminDashboard() {
           <StatCard
             title="Total Visits"
             value={totalVisits.toLocaleString()}
-            change={changes.totalVisits}
             sparklineData={generateSparklineData(totalVisits)}
             detailedData={generateDetailedData(totalVisits)}
             icon={<Users className="h-6 w-6" />}
@@ -115,7 +112,6 @@ export default async function AdminDashboard() {
           <StatCard
             title="Total Leads"
             value={totalLeads.toLocaleString()}
-            change={changes.totalLeads}
             sparklineData={generateSparklineData(totalLeads)}
             detailedData={generateDetailedData(totalLeads)}
             icon={<MousePointerClick className="h-6 w-6" />}
@@ -126,7 +122,6 @@ export default async function AdminDashboard() {
           <StatCard
             title="Conversion Rate"
             value={`${conversionRate}%`}
-            change={changes.conversionRate}
             sparklineData={generateSparklineData(Number(conversionRate) * 100)}
             detailedData={generateDetailedData(Number(conversionRate) * 100)}
             icon={<TrendingUp className="h-6 w-6" />}
@@ -137,7 +132,6 @@ export default async function AdminDashboard() {
           <StatCard
             title="Avg Session"
             value={formatDuration(avgSessionDuration)}
-            change={changes.avgSession}
             sparklineData={generateSparklineData(avgSessionDuration)}
             detailedData={generateDetailedData(avgSessionDuration)}
             icon={<Clock className="h-6 w-6" />}
@@ -178,9 +172,9 @@ export default async function AdminDashboard() {
             metrics={
               ga4
                 ? [
-                    { label: 'Page Views', value: ga4.pageViews, change: 12.5 },
-                    { label: 'Sessions', value: ga4.sessions, change: 15.3 },
-                    { label: 'Bounce Rate', value: `${(ga4.bounceRate * 100).toFixed(1)}%`, change: -5.2 },
+                    { label: 'Page Views', value: ga4.pageViews },
+                    { label: 'Sessions', value: ga4.sessions },
+                    { label: 'Bounce Rate', value: `${(ga4.bounceRate * 100).toFixed(1)}%` },
                   ]
                 : []
             }
@@ -196,9 +190,9 @@ export default async function AdminDashboard() {
             metrics={
               process.env.META_PIXEL_ID && ga4
                 ? [
-                    { label: 'Events', value: Math.floor(ga4.pageViews * 0.2), change: changes.metaEvents },
-                    { label: 'Conversions', value: totalLeads, change: changes.metaConversions },
-                    { label: 'ROAS', value: googleAds ? `${googleAds.roas.toFixed(1)}x` : '3.2x', change: changes.metaRoas },
+                    { label: 'Page Views', value: ga4.pageViews },
+                    { label: 'Conversions', value: totalLeads },
+                    { label: 'ROAS', value: googleAds ? `${googleAds.roas.toFixed(1)}x` : '0.0x' },
                   ]
                 : []
             }
@@ -214,9 +208,8 @@ export default async function AdminDashboard() {
             metrics={
               clarity
                 ? [
-                    { label: 'Recordings', value: Math.floor(clarity.sessionCount * 0.6), change: changes.clarityRecordings },
-                    { label: 'Heatmaps', value: 12, change: changes.clarityHeatmaps },
-                    { label: 'Avg Scroll', value: '68%', change: changes.clarityScroll },
+                    { label: 'Sessions', value: clarity.sessionCount },
+                    { label: 'Page Views', value: clarity.totalPageViews },
                   ]
                 : []
             }
@@ -250,8 +243,7 @@ export default async function AdminDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <MetricBox
             title="Total Clicks"
-            value={gsc ? gsc.clicks : 8542}
-            change={changes.gscClicks}
+            value={gsc ? gsc.clicks : 0}
             color="navy"
             icon={<MousePointer className="h-6 w-6" />}
             tooltip="Number of times users clicked through to your website from Google search results in the last 30 days."
@@ -259,8 +251,7 @@ export default async function AdminDashboard() {
 
           <MetricBox
             title="Total Impressions"
-            value={gsc ? gsc.impressions : 125643}
-            change={changes.gscImpressions}
+            value={gsc ? gsc.impressions : 0}
             color="blue"
             icon={<Eye className="h-6 w-6" />}
             tooltip="Number of times your website appeared in Google search results, regardless of whether it was clicked."
@@ -268,8 +259,7 @@ export default async function AdminDashboard() {
 
           <MetricBox
             title="Average CTR"
-            value={gsc ? `${(gsc.ctr * 100).toFixed(1)}%` : '6.8%'}
-            change={changes.gscCtr}
+            value={gsc ? `${(gsc.ctr * 100).toFixed(1)}%` : '0.0%'}
             color="green"
             icon={<TrendingUp className="h-6 w-6" />}
             tooltip="Click-through rate: percentage of impressions that resulted in clicks. Calculated as (Clicks / Impressions) × 100."
@@ -277,8 +267,7 @@ export default async function AdminDashboard() {
 
           <MetricBox
             title="Average Position"
-            value={gsc ? gsc.avgPosition.toFixed(1) : '8.4'}
-            change={changes.gscPosition}
+            value={gsc ? gsc.avgPosition.toFixed(1) : '0.0'}
             color="gold"
             icon={<Search className="h-6 w-6" />}
             tooltip="Average ranking position in Google search results. Lower is better (position 1 is the top result)."
@@ -296,8 +285,7 @@ export default async function AdminDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <MetricBox
             title="Ad Spend"
-            value={googleAds ? `$${googleAds.cost.toLocaleString()}` : '$3,245'}
-            change={changes.adsSpend}
+            value={googleAds ? `$${googleAds.cost.toLocaleString()}` : '$0'}
             color="orange"
             icon={<DollarSign className="h-6 w-6" />}
             tooltip="Total amount spent on Google Ads campaigns in the last 30 days."
@@ -305,8 +293,7 @@ export default async function AdminDashboard() {
 
           <MetricBox
             title="Ad Clicks"
-            value={googleAds ? googleAds.clicks : 1876}
-            change={changes.adsClicks}
+            value={googleAds ? googleAds.clicks : 0}
             color="purple"
             icon={<MousePointerClick className="h-6 w-6" />}
             tooltip="Number of clicks on your Google Ads in the last 30 days."
@@ -314,8 +301,7 @@ export default async function AdminDashboard() {
 
           <MetricBox
             title="Ad Conversions"
-            value={googleAds ? googleAds.conversions : 89}
-            change={changes.adsConversions}
+            value={googleAds ? googleAds.conversions : 0}
             color="green"
             icon={<UserCheck className="h-6 w-6" />}
             tooltip="Number of conversions (leads, calls, form submissions) generated from Google Ads clicks."
@@ -326,9 +312,8 @@ export default async function AdminDashboard() {
             value={
               googleAds && googleAds.conversions > 0
                 ? `$${(googleAds.cost / googleAds.conversions).toFixed(2)}`
-                : '$36.46'
+                : '$0.00'
             }
-            change={changes.adsCpl}
             color="navy"
             icon={<DollarSign className="h-6 w-6" />}
             tooltip="Average cost to acquire one lead through Google Ads. Calculated as (Total Spend / Total Conversions)."

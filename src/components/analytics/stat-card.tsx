@@ -12,7 +12,7 @@ import { ChartDataPoint } from '@/types/analytics';
 interface StatCardProps {
   title: string;
   value: string | number;
-  change: number;
+  change?: number;
   changeLabel?: string;
   sparklineData?: number[];
   detailedData?: ChartDataPoint[];
@@ -61,7 +61,7 @@ export function StatCard({
                   <div className="rounded-xl bg-white/20 p-3 backdrop-blur-sm group-hover:bg-white/30 transition-colors">
                     <div className="text-white h-6 w-6">{icon}</div>
                   </div>
-                  <ComparisonBadge value={change} />
+                  {change !== undefined && <ComparisonBadge value={change} />}
                 </div>
                 <p className="text-white/90 text-sm font-medium mb-1">{title}</p>
                 <p className="text-4xl font-bold text-white">{value}</p>
@@ -101,24 +101,31 @@ export function StatCard({
               </Dialog.Title>
 
               <div className="space-y-6 mt-4">
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
-                    <p className="text-sm text-[#4A4A4A] mb-1">Current</p>
-                    <p className="text-2xl font-bold text-[#151A4A]">{value}</p>
-                  </div>
-                  <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
-                    <p className="text-sm text-[#4A4A4A] mb-1">Change</p>
-                    <p className={`text-2xl font-bold ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
-                      {isPositive ? '+' : ''}{change.toFixed(1)}%
-                    </p>
-                  </div>
-                  <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
-                    <p className="text-sm text-[#4A4A4A] mb-1">Trend</p>
-                    <div className="flex items-center justify-center gap-2">
-                      <TrendingUp className={`h-6 w-6 ${isPositive ? 'text-green-600' : 'text-red-600 rotate-180'}`} />
+                {change !== undefined ? (
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
+                      <p className="text-sm text-[#4A4A4A] mb-1">Current</p>
+                      <p className="text-2xl font-bold text-[#151A4A]">{value}</p>
+                    </div>
+                    <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
+                      <p className="text-sm text-[#4A4A4A] mb-1">Change</p>
+                      <p className={`text-2xl font-bold ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                        {isPositive ? '+' : ''}{change.toFixed(1)}%
+                      </p>
+                    </div>
+                    <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
+                      <p className="text-sm text-[#4A4A4A] mb-1">Trend</p>
+                      <div className="flex items-center justify-center gap-2">
+                        <TrendingUp className={`h-6 w-6 ${isPositive ? 'text-green-600' : 'text-red-600 rotate-180'}`} />
+                      </div>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
+                    <p className="text-sm text-[#4A4A4A] mb-1">Current Value</p>
+                    <p className="text-3xl font-bold text-[#151A4A]">{value}</p>
+                  </div>
+                )}
 
                 <LineChart
                   data={detailedData}
