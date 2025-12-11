@@ -33,7 +33,7 @@ export interface TopPage {
   path: string;
   title: string;
   views: number;
-  change: number;
+  change?: number;
 }
 
 export interface GoogleAnalytics {

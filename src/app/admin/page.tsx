@@ -16,7 +16,6 @@ import { PlatformCard } from '@/components/analytics/platform-card';
 import { TopPagesList } from '@/components/analytics/top-pages-list';
 import { MetricBox } from '@/components/analytics/metric-box';
 import { LineChart } from '@/components/charts/line-chart';
-import { BarChart } from '@/components/charts/bar-chart';
 import { getRoseyCoAnalytics } from '@/lib/roseyco-analytics';
 import {
   generateSparklineData,
@@ -52,15 +51,6 @@ export default async function AdminDashboard() {
         { path: '/properties', title: 'Properties', views: Math.floor(ga4.pageViews * 0.05) },
       ]
     : [];
-
-  // Mock traffic sources (would come from GA4 in real implementation)
-  const mockTrafficSources = [
-    { name: 'Organic Search', value: 45, color: '#151A4A' },
-    { name: 'Direct', value: 25, color: '#C9A961' },
-    { name: 'Social Media', value: 15, color: '#4A90E2' },
-    { name: 'Referral', value: 10, color: '#50C878' },
-    { name: 'Email', value: 5, color: '#9B59B6' },
-  ];
 
   // Generate daily trend data based on total metrics
   function generateDailyTrendData(totalVisits: number, totalLeads: number) {
@@ -137,20 +127,6 @@ export default async function AdminDashboard() {
             icon={<Clock className="h-6 w-6" />}
             tooltip="Average time visitors spend on your website per session. Longer sessions typically indicate higher engagement."
             color="purple"
-          />
-        </div>
-      </section>
-
-      {/* Traffic Sources Section */}
-      <section className="rounded-2xl bg-white p-6 shadow-sm border border-[#E5E0D8]">
-        <h3 className="text-xl font-semibold text-[#151A4A] mb-6">Traffic Sources</h3>
-        <div className="h-[300px]">
-          <BarChart
-            data={mockTrafficSources}
-            dataKey="value"
-            nameKey="name"
-            height={300}
-            orientation="horizontal"
           />
         </div>
       </section>
