@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { blogPosts } from '@/data/blog-posts';
 import { Calendar, Clock, ArrowRight, BookOpen, Tag } from 'lucide-react';
 
@@ -38,30 +39,38 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#F8F6F2]">
       {/* Hero Section - Redesigned with better contrast */}
-      <div className="relative bg-white border-b-4 border-[#C9A961]">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23151A4A' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
+      <div className="relative bg-white border-b-4 border-[#C9A961] min-h-[70vh] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/properties/KC Home Image 3.jpg"
+            alt="Kansas City Real Estate Blog"
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+          />
+          {/* Dark overlay for text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/65 to-primary/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="max-w-4xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A961]/10 rounded-full mb-6">
-              <BookOpen className="h-5 w-5 text-[#C9A961]" />
-              <span className="font-semibold text-[#C9A961]">KC Family Home Team Blog</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A961]/30 backdrop-blur-sm rounded-full mb-6">
+              <BookOpen className="h-5 w-5 text-white" />
+              <span className="font-semibold text-white">KC Family Home Team Blog</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#151A4A] mb-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_40%)]">
               Kansas City Real Estate
-              <span className="block text-[#C9A961]">Insights</span>
+              <span className="block text-[#C9A961] italic [text-shadow:_-1px_-1px_0_#151A4A,_1px_-1px_0_#151A4A,_-1px_1px_0_#151A4A,_1px_1px_0_#151A4A]">Insights</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-[#4A4A4A] leading-relaxed mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 max-w-3xl mx-auto drop-shadow-2xl">
               Expert advice on buying, selling, and finding the perfect neighborhood for your family in Kansas City
             </p>
 
@@ -70,7 +79,7 @@ export default function BlogPage() {
               {categories.map((category) => (
                 <div
                   key={category}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-[#E5E0D8] rounded-full text-sm font-medium text-[#4A4A4A] hover:border-[#C9A961] hover:text-[#C9A961] transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm border-2 border-white/30 rounded-full text-sm font-medium text-white hover:bg-white/30 hover:border-white/50 transition-colors"
                 >
                   <Tag className="h-4 w-4" />
                   {category}
