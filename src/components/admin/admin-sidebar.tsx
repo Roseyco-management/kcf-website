@@ -26,39 +26,9 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    icon: <Home className="w-5 h-5" />,
-    name: "Dashboard",
-    path: "/admin",
-  },
-  {
-    icon: <FileText className="w-5 h-5" />,
-    name: "Deals",
-    path: "/admin/deals",
-  },
-  {
-    icon: <Users className="w-5 h-5" />,
-    name: "Leads",
-    path: "/admin/leads",
-  },
-  {
     icon: <BarChart3 className="w-5 h-5" />,
     name: "Analytics",
-    path: "/admin/analytics",
-  },
-  {
-    icon: <Folder className="w-5 h-5" />,
-    name: "File Manager",
-    path: "/admin/files",
-  },
-  {
-    icon: <Users className="w-5 h-5" />,
-    name: "Team",
-    path: "/admin/team",
-  },
-  {
-    icon: <Settings className="w-5 h-5" />,
-    name: "Settings",
-    path: "/admin/settings",
+    path: "/admin",
   },
 ];
 
