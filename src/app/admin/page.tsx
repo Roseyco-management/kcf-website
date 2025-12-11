@@ -25,13 +25,18 @@ import {
 import { formatDuration, safeNumber } from '@/lib/analytics/formatters';
 import { TopPage } from '@/types/analytics';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminDashboard({
   searchParams,
 }: {
-  searchParams: { period?: string };
+  searchParams: Promise<{ period?: string }>;
 }) {
+  // Await searchParams in Next.js 15+
+  const params = await searchParams;
+
   // Fetch real analytics data with selected period
-  const period = (searchParams.period || '30d') as '7d' | '30d' | '90d';
+  const period = (params.period || '30d') as '7d' | '30d' | '90d';
   const roseyCoData = await getRoseyCoAnalytics(period);
 
   // Extract data with fallbacks
@@ -130,7 +135,7 @@ export default async function AdminDashboard({
             changeLabel={periodLabel}
             icon={<TrendingUp className="h-6 w-6" />}
             tooltip="Percentage of visitors who completed a lead form or contacted you. Calculated as (Total Leads / Total Visits) × 100."
-            color="green"
+            color="navy"
           />
 
           <StatCard
@@ -141,7 +146,7 @@ export default async function AdminDashboard({
             changeLabel={periodLabel}
             icon={<Clock className="h-6 w-6" />}
             tooltip="Average time visitors spend on your website per session. Longer sessions typically indicate higher engagement."
-            color="purple"
+            color="gold"
           />
         </div>
       </section>
@@ -243,7 +248,7 @@ export default async function AdminDashboard({
           <MetricBox
             title="Total Impressions"
             value={gsc ? gsc.impressions : 0}
-            color="blue"
+            color="gold"
             icon={<Eye className="h-6 w-6" />}
             tooltip={`Number of times your website appeared in Google search results in the ${periodLabel.toLowerCase()}.`}
           />
@@ -251,7 +256,7 @@ export default async function AdminDashboard({
           <MetricBox
             title="Average CTR"
             value={gsc ? `${(gsc.ctr * 100).toFixed(1)}%` : '0.0%'}
-            color="green"
+            color="navy"
             icon={<TrendingUp className="h-6 w-6" />}
             tooltip="Click-through rate: percentage of impressions that resulted in clicks. Calculated as (Clicks / Impressions) × 100."
           />
@@ -277,7 +282,7 @@ export default async function AdminDashboard({
           <MetricBox
             title="Ad Spend"
             value={googleAds ? `$${googleAds.cost.toLocaleString()}` : '$0'}
-            color="orange"
+            color="gold"
             icon={<DollarSign className="h-6 w-6" />}
             tooltip={`Total amount spent on Google Ads campaigns in the ${periodLabel.toLowerCase()}.`}
           />
@@ -285,7 +290,7 @@ export default async function AdminDashboard({
           <MetricBox
             title="Ad Clicks"
             value={googleAds ? googleAds.clicks : 0}
-            color="purple"
+            color="navy"
             icon={<MousePointerClick className="h-6 w-6" />}
             tooltip={`Number of clicks on your Google Ads in the ${periodLabel.toLowerCase()}.`}
           />
@@ -293,7 +298,7 @@ export default async function AdminDashboard({
           <MetricBox
             title="Ad Conversions"
             value={googleAds ? googleAds.conversions : 0}
-            color="green"
+            color="gold"
             icon={<UserCheck className="h-6 w-6" />}
             tooltip={`Number of conversions (leads, calls, form submissions) generated from Google Ads clicks in the ${periodLabel.toLowerCase()}.`}
           />

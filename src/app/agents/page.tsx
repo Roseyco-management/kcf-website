@@ -6,8 +6,20 @@ import { CTASection } from "@/components/sections/cta-section";
 import { Phone, Mail, Home, Users, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Our Agents | KC Family Home Team",
-  description: "Meet the dedicated real estate professionals of KC Family Home Team. Our experienced agents are committed to helping Kansas City families find their perfect homes.",
+  title: "Kansas City Real Estate Agents for Families | Meet Our Team",
+  description: "Meet Ernesto, Monica, and Chris - your dedicated Kansas City real estate team. 500+ homes sold, 15+ years experience helping families buy and sell homes. Expert local agents ready to help you.",
+  keywords: [
+    'Kansas City real estate agents',
+    'family realtors Kansas City',
+    'best real estate agents Kansas City',
+    'top realtors Kansas City families',
+    'KC Family Home Team agents',
+  ],
+  openGraph: {
+    title: 'Meet Your Kansas City Real Estate Agents',
+    description: 'Expert real estate professionals dedicated to helping Kansas City families.',
+    type: 'website',
+  },
 };
 
 // Detailed Team Data

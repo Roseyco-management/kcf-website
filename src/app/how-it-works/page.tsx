@@ -6,8 +6,19 @@ import { ProcessSteps } from "@/components/sections/process-steps";
 import { CTASection } from "@/components/sections/cta-section";
 
 export const metadata: Metadata = {
-  title: "How It Works | KC Family Home Team",
-  description: "Discover our streamlined real estate process. From initial consultation to closing day, we guide you through every step of buying or selling your Kansas City home.",
+  title: "How to Buy or Sell a Home in Kansas City | KC Family Home Team",
+  description: "Step-by-step guide to buying or selling your family home in Kansas City. Expert guidance through the entire real estate process, from consultation to closing. Stress-free for families.",
+  keywords: [
+    "how to buy home Kansas City",
+    "home buying process Kansas City",
+    "selling home Kansas City",
+    "Kansas City real estate process",
+    "first time home buyer Kansas City",
+  ],
+  openGraph: {
+    title: "How to Buy or Sell a Home in Kansas City",
+    description: "Expert guidance through every step of buying or selling your family home in Kansas City. Stress-free process designed for families.",
+  },
 };
 
 // Buying Process Steps

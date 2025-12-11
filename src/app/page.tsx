@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Hero } from "@/components/sections/hero";
 import { SectionWrapper, SectionHeader } from "@/components/sections/section-wrapper";
 import { IconFeatureGrid, IconFeatureListItem } from "@/components/sections/icon-feature-card";
@@ -7,6 +8,9 @@ import { TestimonialsSection } from "@/components/sections/testimonials";
 import { StatsSection } from "@/components/sections/stats-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { CTASection } from "@/components/sections/cta-section";
+import { HomepageSchema } from "@/components/seo/homepage-schema";
+import { neighborhoods } from "@/data/neighborhoods";
+import { MapPin, ArrowRight } from "lucide-react";
 
 // Team Data
 const teamMembers = [
@@ -158,6 +162,9 @@ const faqs = [
 export default function HomePage() {
   return (
     <main>
+      {/* SEO Schema Markup */}
+      <HomepageSchema />
+
       {/* Hero Section */}
       <Hero
         title="Empowering Growing Families with personalized, stress-free home-buying."
@@ -254,6 +261,51 @@ export default function HomePage() {
 
       {/* Testimonials Section - Full-width premium layout */}
       <TestimonialsSection testimonials={testimonials} />
+
+      {/* Neighborhoods Section */}
+      <SectionWrapper background="cream" id="neighborhoods">
+        <SectionHeader
+          badge="Neighborhoods"
+          title="Explore Kansas City's Best Family Neighborhoods"
+          highlightedWord="Family Neighborhoods"
+          description="From top-rated schools to walkable communities, discover the perfect neighborhood for your family."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          {neighborhoods.slice(0, 3).map((neighborhood) => (
+            <Link
+              key={neighborhood.slug}
+              href={`/neighborhoods/${neighborhood.slug}`}
+              className="group bg-white rounded-xl p-6 border border-[#E5E0D8] hover:shadow-lg transition-all"
+            >
+              <div className="flex items-start gap-3 mb-4">
+                <MapPin className="h-6 w-6 text-[#C9A961] flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-bold text-[#151A4A] mb-1 group-hover:text-[#C9A961] transition-colors">
+                    {neighborhood.name}
+                  </h3>
+                  <p className="text-sm text-[#4A4A4A]">{neighborhood.tagline}</p>
+                </div>
+              </div>
+              <p className="text-[#4A4A4A] text-sm mb-4 line-clamp-2">
+                {neighborhood.description}
+              </p>
+              <div className="flex items-center gap-2 text-[#C9A961] font-semibold text-sm">
+                Explore {neighborhood.name}
+                <ArrowRight className="h-4 w-4" />
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center">
+          <Link
+            href="/neighborhoods"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#151A4A] text-white font-semibold rounded-lg hover:bg-[#C9A961] transition-colors"
+          >
+            View All Neighborhoods
+            <ArrowRight className="h-5 w-5" />
+          </Link>
+        </div>
+      </SectionWrapper>
 
       {/* FAQ Section */}
       <SectionWrapper background="white" id="faq">

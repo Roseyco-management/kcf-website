@@ -18,21 +18,24 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "KC Family Home Team | Kansas City Real Estate Experts",
+    default: "Kansas City Family Home Team | Buy & Sell Homes for Families",
     template: "%s | KC Family Home Team",
   },
   description:
-    "Empowering growing families with personalized, stress-free home buying and selling in Kansas City. Trust our expertise and commitment to your family's journey.",
+    "Find your perfect family home in Kansas City. Expert real estate agents specializing in family-friendly neighborhoods, top schools, and growing families. Free home search & consultation.",
   keywords: [
-    "Kansas City real estate",
-    "KC homes for sale",
-    "Kansas City realtors",
-    "buy home Kansas City",
-    "sell home Kansas City",
-    "KC Family Home Team",
-    "Kansas City metro homes",
-    "family-friendly realtors",
-    "stress-free home buying",
+    "Kansas City family homes",
+    "homes for sale Kansas City families",
+    "Kansas City family real estate",
+    "family friendly neighborhoods Kansas City",
+    "Kansas City homes near good schools",
+    "buy family home Kansas City",
+    "sell family home Kansas City",
+    "upsizing home Kansas City",
+    "Kansas City realtors families",
+    "Overland Park homes",
+    "Lee's Summit homes",
+    "Brookside Kansas City",
   ],
   authors: [{ name: "KC Family Home Team" }],
   creator: "KC Family Home Team",
@@ -46,9 +49,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://kcfhomes.com",
     siteName: "KC Family Home Team",
-    title: "KC Family Home Team | Kansas City Real Estate Experts",
+    title: "Kansas City Family Home Team | Buy & Sell Homes for Families",
     description:
-      "Empowering growing families with personalized, stress-free home buying and selling in Kansas City.",
+      "Find your perfect family home in Kansas City. Expert agents specializing in family-friendly neighborhoods, top schools, and growing families.",
     images: [
       {
         url: "/og-image.jpg",
@@ -60,9 +63,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "KC Family Home Team | Kansas City Real Estate Experts",
+    title: "Kansas City Family Home Team | Buy & Sell Homes for Families",
     description:
-      "Empowering growing families with personalized, stress-free home buying in Kansas City.",
+      "Find your perfect family home in Kansas City. Expert agents specializing in family-friendly neighborhoods and top schools.",
     images: ["/og-image.jpg"],
   },
   robots: {

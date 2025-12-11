@@ -9,8 +9,20 @@ import { CTASection } from "@/components/sections/cta-section";
 import { AboutFeaturesList } from "@/components/sections/about-features";
 
 export const metadata: Metadata = {
-  title: "About Us | KC Family Home Team",
-  description: "Learn about KC Family Home Team - Kansas City's family-focused real estate experts. Discover our story, mission, and the team dedicated to helping your family find the perfect home.",
+  title: "About Kansas City's Top Family Real Estate Team | KC Family Home Team",
+  description: "Meet Kansas City's premier family-focused real estate team. 500+ families served, 15+ years experience, 98% client satisfaction. Learn our story and mission to help your family find the perfect home in Kansas City.",
+  keywords: [
+    'Kansas City real estate team',
+    'family real estate agents Kansas City',
+    'best realtors Kansas City',
+    'KC Family Home Team',
+    'Kansas City home buying team',
+  ],
+  openGraph: {
+    title: 'About Kansas City\'s Top Family Real Estate Team',
+    description: 'Meet the team that has helped 500+ Kansas City families find their perfect homes.',
+    type: 'website',
+  },
 };
 
 // Team Data

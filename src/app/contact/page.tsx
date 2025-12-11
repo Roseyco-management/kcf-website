@@ -5,8 +5,18 @@ import { ContactForm } from "@/components/sections/contact-form";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact Us | KC Family Home Team",
-  description: "Get in touch with KC Family Home Team. We're here to answer your questions and help you start your real estate journey in Kansas City.",
+  title: "Contact Kansas City Real Estate Agents | KC Family Home Team",
+  description: "Contact our Kansas City real estate experts. Free consultation for families buying or selling homes. Serving Overland Park, Lee's Summit, and all KC metro. Call (816) 575-7763.",
+  keywords: [
+    "contact Kansas City realtor",
+    "Kansas City real estate agent",
+    "free home consultation Kansas City",
+    "KC real estate phone number",
+  ],
+  openGraph: {
+    title: "Contact KC Family Home Team - Kansas City Real Estate",
+    description: "Get in touch with Kansas City's top family real estate team. Free consultation available.",
+  },
 };
 
 const contactInfo = [

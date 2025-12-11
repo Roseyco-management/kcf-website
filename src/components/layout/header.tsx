@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, LogIn } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -12,12 +13,16 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/agents", label: "Agents" },
+  { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
 ];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [logoClickCount, setLogoClickCount] = useState(0);
+  const [clickTimeout, setClickTimeout] = useState<NodeJS.Timeout | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +32,34 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Handle logo double-click for admin login
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    setLogoClickCount(prev => prev + 1);
+
+    if (clickTimeout) {
+      clearTimeout(clickTimeout);
+    }
+
+    const timeout = setTimeout(() => {
+      if (logoClickCount + 1 === 1) {
+        // Single click - go to home
+        router.push('/');
+      }
+      setLogoClickCount(0);
+    }, 300);
+
+    setClickTimeout(timeout);
+
+    // Double click detected
+    if (logoClickCount + 1 === 2) {
+      clearTimeout(timeout);
+      setLogoClickCount(0);
+      router.push('/admin/login');
+    }
+  };
 
   return (
     <motion.header
@@ -43,8 +76,8 @@ export function Header() {
         <nav className="flex items-center justify-between">
           {/* Logo Section */}
           <div className="flex items-center gap-4 md:gap-6">
-            {/* KC Family Home Team Logo */}
-            <Link href="/" className="flex-shrink-0">
+            {/* KC Family Home Team Logo - Double-click for admin login */}
+            <div onClick={handleLogoClick} className="flex-shrink-0 cursor-pointer">
               <div className="relative w-40 h-10 md:w-52 md:h-12">
                 <Image
                   src="/photopea/Untitled design-6.png"
@@ -54,7 +87,7 @@ export function Header() {
                   priority
                 />
               </div>
-            </Link>
+            </div>
 
             {/* United Real Estate Logo - Desktop only */}
             <div className="hidden md:block">
@@ -92,15 +125,6 @@ export function Header() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
             </Link>
 
-            {/* Login Link */}
-            <Link
-              href="/admin/login"
-              className="text-foreground/70 font-medium hover:text-primary transition-colors flex items-center gap-1.5"
-            >
-              <LogIn className="h-4 w-4" />
-              Login
-            </Link>
-
             {/* Contact CTA */}
             <Button asChild className="bg-accent hover:bg-accent/90 text-primary font-semibold rounded-full px-6">
               <Link href="/contact">Contact Us</Link>
@@ -134,14 +158,6 @@ export function Header() {
                   className="text-xl font-medium text-foreground hover:text-accent transition-colors py-2"
                 >
                   Questionnaire
-                </Link>
-                <Link
-                  href="/admin/login"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium text-foreground/70 hover:text-accent transition-colors py-2 flex items-center justify-center gap-2"
-                >
-                  <LogIn className="h-5 w-5" />
-                  Login
                 </Link>
                 <div className="pt-4 px-8">
                   <Button
