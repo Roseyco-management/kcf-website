@@ -30,6 +30,7 @@ export const blogPosts: BlogPost[] = [
 
     // Internal links
     relatedNeighborhoods: ['overland-park', 'lees-summit', 'brookside', 'waldo', 'blue-springs'],
+    relatedServices: ['selling-homes-kansas-city'],
 
     content: `
 Are you ready to sell your family home in Kansas City? Whether you're upsizing for a growing family, relocating for work, or downsizing to a new chapter, selling your home quickly and for top dollar is the goal.
@@ -496,6 +497,7 @@ We handle these situations regularly and can guide you through the unique aspect
 
     // Internal links
     relatedNeighborhoods: ['overland-park', 'lees-summit', 'waldo', 'blue-springs', 'liberty'],
+    relatedServices: ['buying-homes-kansas-city', 'first-time-home-buyers'],
 
     content: `
 Buying your first home is one of the most exciting milestones in life – especially when you're building a future for your growing family. But if you're a first-time home buyer in Kansas City, the process can feel overwhelming. How much do you really need saved? What neighborhoods should you consider? How does the home buying process actually work?
@@ -887,6 +889,7 @@ Kansas City is more balanced than many markets. Homes under $350K still see comp
 
     // Internal links
     relatedNeighborhoods: ['overland-park', 'lees-summit', 'brookside', 'waldo', 'blue-springs'],
+    relatedServices: ['buying-homes-kansas-city', 'relocating-kansas-city'],
 
     content: `
 Finding the perfect neighborhood for your family in Kansas City can feel overwhelming. With so many great communities to choose from, how do you know which one is right for your family's unique needs?

@@ -8,7 +8,7 @@ export function NeighborhoodCTA({ name }: Props) {
   return (
     <section id="contact" className="bg-gradient-to-br from-[#151A4A] to-[#0F1238] rounded-2xl p-8 md:p-12 text-white">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#C9A961]">
           Ready to Find Your Dream Home in {name}?
         </h2>
         <p className="text-xl text-white/90 mb-8">

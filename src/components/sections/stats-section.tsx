@@ -165,6 +165,41 @@ interface AnimatedNumberProps {
 }
 
 function AnimatedNumber({ value, prefix = "", suffix = "", className }: AnimatedNumberProps) {
+  const numericMatch = value.match(/[\d.]+/);
+
+  if (!numericMatch) {
+    return (
+      <div className={className}>
+        {prefix}
+        {value}
+        {suffix}
+      </div>
+    );
+  }
+
+  return (
+    <AnimatedValue
+      value={value}
+      prefix={prefix}
+      suffix={suffix}
+      className={className}
+      numericString={numericMatch[0]}
+    />
+  );
+}
+
+interface AnimatedValueProps extends AnimatedNumberProps {
+  numericString: string;
+}
+
+function AnimatedValue({
+  value,
+  prefix = "",
+  suffix = "",
+  className,
+  numericString,
+}: AnimatedValueProps) {
+  const numericValue = parseFloat(numericString);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
   const [displayValue, setDisplayValue] = useState("0");
@@ -172,14 +207,6 @@ function AnimatedNumber({ value, prefix = "", suffix = "", className }: Animated
   useEffect(() => {
     if (!isInView) return;
 
-    // Extract numeric part from value
-    const numericMatch = value.match(/[\d.]+/);
-    if (!numericMatch) {
-      setDisplayValue(value);
-      return;
-    }
-
-    const targetNumber = parseFloat(numericMatch[0]);
     const duration = 2000; // 2 seconds
     const startTime = Date.now();
     const isDecimal = value.includes(".");
@@ -190,7 +217,7 @@ function AnimatedNumber({ value, prefix = "", suffix = "", className }: Animated
 
       // Easing function (ease-out)
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      const currentValue = targetNumber * easeOut;
+      const currentValue = numericValue * easeOut;
 
       if (isDecimal) {
         setDisplayValue(currentValue.toFixed(1));
@@ -202,14 +229,13 @@ function AnimatedNumber({ value, prefix = "", suffix = "", className }: Animated
         requestAnimationFrame(animate);
       } else {
         // Ensure we end with the exact target value
-        setDisplayValue(numericMatch[0]);
+        setDisplayValue(numericString);
       }
     };
 
     animate();
-  }, [isInView, value]);
+  }, [isInView, numericString, numericValue, value]);
 
-  // Extract any non-numeric suffix from the value (like %, +, K, M)
   const valueSuffix = value.replace(/[\d.]+/, "");
 
   return (

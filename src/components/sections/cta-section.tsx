@@ -19,6 +19,7 @@ interface CTASectionProps {
     href: string;
   };
   backgroundImage?: string;
+  backgroundImageAlt?: string;
   variant?: "default" | "split" | "centered";
 }
 
@@ -30,6 +31,7 @@ export function CTASection({
   primaryCTA,
   secondaryCTA,
   backgroundImage,
+  backgroundImageAlt,
   variant = "default",
 }: CTASectionProps) {
   // Split title at highlighted word
@@ -99,7 +101,7 @@ export function CTASection({
               >
                 <Image
                   src={backgroundImage}
-                  alt=""
+                  alt={backgroundImageAlt || "Beautiful Kansas City family home"}
                   fill
                   className="object-cover"
                 />
@@ -118,7 +120,7 @@ export function CTASection({
         <div className="absolute inset-0">
           <Image
             src={backgroundImage}
-            alt=""
+            alt={backgroundImageAlt || "Beautiful Kansas City family home"}
             fill
             className="object-cover"
           />

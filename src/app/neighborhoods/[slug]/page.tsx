@@ -9,6 +9,7 @@ import { NeighborhoodStats } from '@/components/neighborhoods/neighborhood-stats
 import { NeighborhoodInsights } from '@/components/neighborhoods/neighborhood-insights';
 import { NeighborhoodCTA } from '@/components/neighborhoods/neighborhood-cta';
 import { NeighborhoodSchema } from '@/components/neighborhoods/neighborhood-schema';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -56,6 +57,14 @@ export default async function NeighborhoodPage({ params }: Props) {
     <div className="min-h-screen bg-[#F8F6F2]">
       {/* SEO Schema Markup */}
       <NeighborhoodSchema neighborhood={neighborhood} />
+
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: 'Neighborhoods', href: '/neighborhoods' },
+          { label: neighborhood.name },
+        ]}
+      />
 
       {/* Hero Section */}
       <NeighborhoodHero neighborhood={neighborhood} />

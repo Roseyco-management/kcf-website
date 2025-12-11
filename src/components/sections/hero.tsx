@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 
 interface HeroProps {
   badge?: string;
@@ -20,8 +19,8 @@ interface HeroProps {
     href: string;
   };
   backgroundImage?: string;
-  showStats?: boolean;
   centered?: boolean;
+  floatingLogo?: boolean;
 }
 
 const fadeInUp = {
@@ -31,7 +30,7 @@ const fadeInUp = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.6, 0.05, 0.01, 0.9] as any,
+      ease: [0.6, 0.05, 0.01, 0.9] as [number, number, number, number],
     },
   },
 };
@@ -47,6 +46,17 @@ const staggerContainer = {
   },
 };
 
+const rotatingLogo = {
+  animate: {
+    rotateY: [0, 360],
+    transition: {
+      duration: 20,
+      repeat: Infinity,
+      ease: "linear" as const,
+    },
+  },
+};
+
 export function Hero({
   badge,
   title,
@@ -56,8 +66,8 @@ export function Hero({
   primaryCTA,
   secondaryCTA,
   backgroundImage,
-  showStats = false,
   centered = false,
+  floatingLogo = false,
 }: HeroProps) {
   // Split title at highlighted word if provided
   let beforeHighlight = title;
@@ -79,6 +89,7 @@ export function Hero({
             alt="Hero background"
             fill
             className="object-cover"
+            style={{ objectPosition: 'center 30%' }}
             priority
             quality={90}
           />
@@ -98,6 +109,25 @@ export function Hero({
         </div>
       )}
 
+      {/* Floating Rotating Logo */}
+      {floatingLogo && (
+        <motion.div
+          variants={rotatingLogo}
+          animate="animate"
+          className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none"
+          style={{ perspective: "1000px", marginTop: "10vh" }}
+        >
+          <Image
+            src="/logos/KC Analytics Hub Logo Transparent BG.png"
+            alt="KC Family Home Team Logo"
+            width={600}
+            height={600}
+            className="opacity-[0.08]"
+            priority
+          />
+        </motion.div>
+      )}
+
       <div className="container-main relative z-10">
         <motion.div
           variants={staggerContainer}
@@ -111,7 +141,7 @@ export function Hero({
               <p
                 className={`text-sm md:text-base font-bold tracking-[0.3em] mb-12 uppercase ${
                   backgroundImage
-                    ? "text-white drop-shadow-lg"
+                    ? "text-white/80 drop-shadow-lg"
                     : "text-muted-foreground"
                 }`}
               >
@@ -125,14 +155,14 @@ export function Hero({
             variants={fadeInUp}
             className={`mb-6 text-4xl md:text-5xl lg:text-7xl font-black leading-[1.2] ${
               backgroundImage
-                ? "text-white drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_40%)]"
+                ? "text-white/90 drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_40%)]"
                 : "text-foreground"
             }`}
             style={{ letterSpacing: '-0.02em' }}
           >
             {highlightedWord ? (
               <>
-                <span className="block text-accent uppercase mb-2 italic [text-shadow:_-1px_-1px_0_#151A4A,_1px_-1px_0_#151A4A,_-1px_1px_0_#151A4A,_1px_1px_0_#151A4A]">
+                <span className="block text-accent/90 uppercase mb-2 italic [text-shadow:_-1px_-1px_0_#151A4A,_1px_-1px_0_#151A4A,_-1px_1px_0_#151A4A,_1px_1px_0_#151A4A]">
                   {highlightedWord}
                 </span>
                 <span className="block mb-6">{afterHighlight}</span>
@@ -168,7 +198,7 @@ export function Hero({
               className={`text-lg leading-relaxed mb-10 max-w-2xl ${
                 centered ? "mx-auto" : ""
               } ${
-                backgroundImage ? "text-white/85" : "text-muted-foreground"
+                backgroundImage ? "text-white/75" : "text-muted-foreground"
               }`}
             >
               {description}

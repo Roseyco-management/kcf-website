@@ -60,6 +60,7 @@ export default function ContactPage() {
         highlightedWord="Hear"
         description="Whether you have questions, need advice, or are ready to start your real estate journey, our team is here to help. Reach out today!"
         centered
+        floatingLogo
       />
 
       {/* Contact Section */}

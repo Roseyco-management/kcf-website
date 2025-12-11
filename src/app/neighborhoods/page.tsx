@@ -135,11 +135,11 @@ export default function NeighborhoodsPage() {
       <div className="bg-gradient-to-br from-[#151A4A] to-[#0F1238] py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Can't Decide? Let Us Help
+            Can&apos;t Decide? Let Us Help
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Our local experts know every neighborhood inside and out. We'll help you find the
-            perfect community for your family's unique needs.
+            Our local experts know every neighborhood inside and out. We&apos;ll help you find the
+            perfect community for your family&apos;s unique needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "lighthouse": "node lighthouse-audit.cjs",
-    "lighthouse:prod": "LIGHTHOUSE_URL=https://www.kcfhomes.com node lighthouse-audit.cjs",
+    "lighthouse": "node lighthouse-audit.mjs",
+    "lighthouse:prod": "LIGHTHOUSE_URL=https://www.kcfhomes.com node lighthouse-audit.mjs",
     "perf:test": "npm run build && npm run start & sleep 5 && npm run lighthouse",
     "analyze": "ANALYZE=true npm run build"
   },

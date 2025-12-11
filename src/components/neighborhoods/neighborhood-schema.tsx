@@ -76,11 +76,39 @@ export function NeighborhoodSchema({ neighborhood }: Props) {
       '@type': 'GeoCoordinates',
       // Note: In production, add actual coordinates for each neighborhood
     },
-    amenityFeature: neighborhood.parks.map((park) => ({
-      '@type': 'LocationFeatureSpecification',
-      name: park.name,
-      value: park.type,
-    })),
+    amenityFeature: [
+      ...neighborhood.parks.map((park) => ({
+        '@type': 'LocationFeatureSpecification',
+        name: park.name,
+        value: park.type,
+      })),
+      ...neighborhood.otherAmenities.map((amenity) => ({
+        '@type': 'LocationFeatureSpecification',
+        name: amenity.name,
+        value: amenity.type,
+      })),
+    ],
+  };
+
+  // Residence Schema
+  const residenceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Residence',
+    name: `Homes in ${neighborhood.name}`,
+    description: `${neighborhood.description} Find your perfect family home in this desirable Kansas City neighborhood.`,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: neighborhood.city,
+      addressRegion: neighborhood.state,
+      addressCountry: 'US',
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      lowPrice: Math.round(neighborhood.stats.medianPrice * 0.7),
+      highPrice: Math.round(neighborhood.stats.medianPrice * 1.3),
+      price: neighborhood.stats.medianPrice,
+    },
   };
 
   // FAQ Schema for common questions
@@ -139,6 +167,10 @@ export function NeighborhoodSchema({ neighborhood }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(placeSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(residenceSchema) }}
       />
       <script
         type="application/ld+json"

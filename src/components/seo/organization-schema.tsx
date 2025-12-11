@@ -1,3 +1,5 @@
+import { googleReviews, reviewStats } from '@/data/reviews';
+
 export function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
@@ -54,7 +56,7 @@ export function OrganizationSchema() {
       },
     ],
     telephone: "+1-816-575-7763",
-    email: "team@kcfhomes.com",
+    email: "admin@kcfhomes.com",
     sameAs: [
       "https://www.facebook.com/kcfamilyhomes",
       "https://www.instagram.com/kcfamilyhomes",
@@ -98,10 +100,17 @@ export function OrganizationSchema() {
         email: "chris@kcfhomes.com",
         telephone: "+1-816-575-7763",
       },
+      {
+        "@type": "Person",
+        name: "Sandy",
+        jobTitle: "Real Estate Specialist",
+        email: "sandy@kcfhomes.com",
+        telephone: "+1-816-575-7763",
+      },
     ],
     numberOfEmployees: {
       "@type": "QuantitativeValue",
-      value: 3,
+      value: 4,
     },
     foundingDate: "2010",
     hasOfferCatalog: {
@@ -146,6 +155,28 @@ export function OrganizationSchema() {
         },
       ],
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: reviewStats.averageRating,
+      reviewCount: reviewStats.totalReviews,
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: googleReviews.filter(r => r.text).map((review) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: review.author,
+      },
+      datePublished: review.date,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: "5",
+        worstRating: "1",
+      },
+      reviewBody: review.text,
+    })),
   };
 
   return (

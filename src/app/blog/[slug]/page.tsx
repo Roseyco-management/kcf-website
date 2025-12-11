@@ -1,10 +1,14 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getBlogPostBySlug, getAllBlogSlugs } from '@/data/blog-posts';
+import { getBlogPostBySlug, getAllBlogSlugs, blogPosts } from '@/data/blog-posts';
 import { getNeighborhoodBySlug } from '@/data/neighborhoods';
 import { Calendar, Clock, User, ArrowLeft, ArrowRight } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { RelatedServices } from '@/components/blog/related-services';
+import { RelatedPosts } from '@/components/blog/related-posts';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
+import { SocialShare } from '@/components/blog/social-share';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -128,6 +132,14 @@ export default async function BlogPostPage({ params }: Props) {
         }}
       />
 
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: 'Blog', href: '/blog' },
+          { label: post.title },
+        ]}
+      />
+
       {/* Header */}
       <div className="bg-white border-b border-[#E5E0D8]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -147,7 +159,7 @@ export default async function BlogPostPage({ params }: Props) {
           <h1 className="text-4xl md:text-5xl font-bold text-[#151A4A] mb-6">{post.title}</h1>
 
           {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-6 text-[#4A4A4A]">
+          <div className="flex flex-wrap items-center gap-6 text-[#4A4A4A] mb-6">
             <div className="flex items-center gap-2">
               <User className="h-5 w-5" />
               <span className="font-medium">{post.author.name}</span>
@@ -161,13 +173,13 @@ export default async function BlogPostPage({ params }: Props) {
               <span>{post.readTime} min read</span>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Featured Image Placeholder */}
-      <div className="bg-gradient-to-br from-[#151A4A] to-[#C9A961] aspect-[21/9] max-w-7xl mx-auto">
-        <div className="w-full h-full flex items-center justify-center">
-          <span className="text-white/60 text-lg">{post.category}</span>
+          {/* Social Share */}
+          <SocialShare
+            title={post.title}
+            url={`https://www.kcfhomes.com/blog/${post.slug}`}
+            description={post.excerpt}
+          />
         </div>
       </div>
 
@@ -216,6 +228,11 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </article>
 
+      {/* Related Services */}
+      {post.relatedServices && post.relatedServices.length > 0 && (
+        <RelatedServices serviceSlugs={post.relatedServices} />
+      )}
+
       {/* Related Neighborhoods */}
       {relatedNeighborhoods && relatedNeighborhoods.length > 0 && (
         <div className="bg-white border-t border-[#E5E0D8] py-12">
@@ -242,6 +259,9 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
       )}
+
+      {/* Related Blog Posts */}
+      <RelatedPosts currentPost={post} allPosts={blogPosts} />
 
       {/* CTA Section */}
       <div className="bg-gradient-to-br from-[#151A4A] to-[#0F1238] py-16">

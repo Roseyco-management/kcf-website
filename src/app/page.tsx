@@ -1,41 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Hero } from "@/components/sections/hero";
 import { SectionWrapper, SectionHeader } from "@/components/sections/section-wrapper";
 import { IconFeatureGrid, IconFeatureListItem } from "@/components/sections/icon-feature-card";
 import { ProcessSteps } from "@/components/sections/process-steps";
-import { TeamGrid } from "@/components/sections/team-card";
 import { TestimonialsSection } from "@/components/sections/testimonials";
 import { StatsSection } from "@/components/sections/stats-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { CTASection } from "@/components/sections/cta-section";
 import { HomepageSchema } from "@/components/seo/homepage-schema";
+import { RecentSales } from "@/components/sections/recent-sales";
 import { neighborhoods } from "@/data/neighborhoods";
+import { googleReviews } from "@/data/reviews";
 import { MapPin, ArrowRight } from "lucide-react";
-
-// Team Data
-const teamMembers = [
-  {
-    name: "Ernesto Tinoco",
-    role: "Senior Consultant",
-    image: "/agents/KC Ernesto.jpg",
-    phone: "+1 (816) 575-7763",
-    email: "ernesto@kcfhomes.com",
-  },
-  {
-    name: "Monica Hammer",
-    role: "Homeowner Specialist",
-    image: "/agents/KC Monica.jpg",
-    phone: "+1 (816) 575-7763",
-    email: "monica@kcfhomes.com",
-  },
-  {
-    name: "Chris Schinzel",
-    role: "Transaction Coordinator and Property Manager",
-    image: "/agents/KC Chris.jpg",
-    phone: "+1 (816) 575-7763",
-    email: "chris@kcfhomes.com",
-  },
-];
 
 // Stats Data
 const stats = [
@@ -103,37 +80,17 @@ const features = [
   },
 ];
 
-// Testimonials Data
-const testimonials = [
-  {
-    id: 1,
-    name: "Sarah & Michael Johnson",
-    location: "Overland Park, KS",
-    rating: 5,
-    text: "The KC Family Home Team made selling our home and finding a bigger one for our growing family completely stress-free. They handled everything with such care and professionalism. We couldn't have asked for a better experience!",
-  },
-  {
-    id: 2,
-    name: "David Thompson",
-    location: "Lee's Summit, MO",
-    rating: 5,
-    text: "As a first-time homebuyer, I was nervous about the whole process. Ernesto and his team walked me through every step, found me the perfect home, and made sure I got a great deal. Highly recommend!",
-  },
-  {
-    id: 3,
-    name: "The Martinez Family",
-    location: "Kansas City, MO",
-    rating: 5,
-    text: "We needed to relocate quickly for work, and the team jumped into action. They sold our home in just 10 days and helped us find a new place in our new neighborhood. True professionals!",
-  },
-  {
-    id: 4,
-    name: "Jennifer Williams",
-    location: "Olathe, KS",
-    rating: 5,
-    text: "The attention to detail and communication throughout our home buying journey was exceptional. They truly care about their clients and it shows in everything they do.",
-  },
-];
+// Testimonials Data - Real Google Business Profile Reviews
+const testimonials = googleReviews
+  .filter(r => r.text) // Only reviews with text
+  .slice(0, 6) // Limit to 6 for homepage
+  .map(review => ({
+    id: parseInt(review.id),
+    name: review.author,
+    location: "Google Review", // Or "Verified Google Customer"
+    rating: review.rating,
+    text: review.text,
+  }));
 
 // FAQ Data
 const faqs = [
@@ -179,6 +136,9 @@ export default function HomePage() {
       {/* Stats Section - Prominent band */}
       <StatsSection stats={stats} variant="band" />
 
+      {/* Recent Sales Section */}
+      <RecentSales />
+
       {/* About Section */}
       <SectionWrapper background="cream" id="about">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -212,11 +172,14 @@ export default function HomePage() {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden">
-              <img
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden relative">
+              <Image
                 src="/properties/KC Home Image 2.jpg"
                 alt="Beautiful Kansas City Home"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority={false}
               />
             </div>
             {/* Decorative Element */}
@@ -256,7 +219,31 @@ export default function HomePage() {
           highlightedWord="Family"
           description="Get to know the dedicated professionals who will guide you through your real estate journey."
         />
-        <TeamGrid members={teamMembers} />
+
+        {/* Team Rooftop Image */}
+        <div className="relative w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-xl">
+          <Image
+            src="/agents/KC Rooftop Shot 2.jpg"
+            alt="KC Family Home Team"
+            fill
+            className="object-cover"
+            style={{ objectPosition: 'center 30%' }}
+            quality={90}
+          />
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center mt-12">
+          <Link
+            href="/agents"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-lg"
+          >
+            Meet Our Team
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
       </SectionWrapper>
 
       {/* Testimonials Section - Full-width premium layout */}

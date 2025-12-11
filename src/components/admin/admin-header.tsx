@@ -18,20 +18,16 @@ export function AdminHeader({ user }: AdminHeaderProps) {
       {/* Left Side - Logo & Title */}
       <div className="flex items-center gap-4">
         <Link href="/" className="flex items-center">
-          <div className="relative w-36 h-10 bg-white rounded-lg p-1.5">
+          <div className="relative w-48 h-16">
             <Image
-              src="/photopea/Untitled design-6.png"
-              alt="KC Family Home Team"
+              src="/logos/KC Analytics Hub Logo Transparent BG.png"
+              alt="KC Analytics Hub"
               fill
               className="object-contain"
               priority
             />
           </div>
         </Link>
-        <div className="h-6 w-px bg-[#E5E0D8] hidden md:block"></div>
-        <h1 className="text-xl font-semibold text-[#151A4A] hidden md:block">
-          Analytics Dashboard
-        </h1>
       </div>
 
       {/* Right Side - Actions */}

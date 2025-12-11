@@ -10,7 +10,6 @@ interface ComparisonBadgeProps {
 
 export function ComparisonBadge({ value, label, size = 'md' }: ComparisonBadgeProps) {
   const isPositive = value > 0;
-  const isNegative = value < 0;
   const isNeutral = value === 0 || Math.abs(value) < 0.1;
 
   const sizeClasses = {

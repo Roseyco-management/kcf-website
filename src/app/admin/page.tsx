@@ -76,8 +76,8 @@ export default async function AdminDashboard({
       const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
       const variance = 0.2;
-      const visitVariance = (Math.random() - 0.5) * avgDailyVisits * variance;
-      const leadVariance = (Math.random() - 0.5) * avgDailyLeads * variance;
+      const visitVariance = Math.sin(i + totalVisits) * avgDailyVisits * variance * 0.5;
+      const leadVariance = Math.cos(i + totalLeads) * avgDailyLeads * variance * 0.5;
 
       data.push({
         date: dateStr,

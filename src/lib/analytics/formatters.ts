@@ -93,7 +93,7 @@ export function formatCompact(num: number): string {
  * @param defaultValue - Default if conversion fails
  * @returns Valid number
  */
-export function safeNumber(value: any, defaultValue: number = 0): number {
+export function safeNumber(value: unknown, defaultValue: number = 0): number {
   const num = Number(value);
   return !isNaN(num) && isFinite(num) ? num : defaultValue;
 }

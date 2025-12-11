@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { blogPosts } from '@/data/blog-posts';
-import { Calendar, Clock, ArrowRight, BookOpen, Tag } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Kansas City Real Estate Blog | Family Home Buying & Selling Tips',
@@ -164,7 +164,7 @@ export default function BlogPage() {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Find Your Family's
+            Find Your Family&apos;s
             <span className="block text-[#C9A961]">Perfect Home</span>
           </h2>
 

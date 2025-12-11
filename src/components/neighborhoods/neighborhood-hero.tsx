@@ -19,7 +19,7 @@ export function NeighborhoodHero({ neighborhood }: Props) {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#C9A961]">
               {neighborhood.name}
             </h1>
 
@@ -53,12 +53,6 @@ export function NeighborhoodHero({ neighborhood }: Props) {
               <p className="text-white/70 text-sm mb-1">Median Home Price</p>
               <p className="text-3xl font-bold text-[#C9A961]">
                 ${(neighborhood.stats.medianPrice / 1000).toFixed(0)}K
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <p className="text-white/70 text-sm mb-1">Avg Days on Market</p>
-              <p className="text-3xl font-bold text-[#C9A961]">
-                {neighborhood.stats.avgDaysOnMarket}
               </p>
             </div>
             {neighborhood.stats.walkabilityScore && (

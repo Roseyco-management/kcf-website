@@ -28,4 +28,5 @@ export interface BlogPost {
   // Internal links
   relatedNeighborhoods?: string[]; // slugs
   relatedPosts?: string[]; // slugs
+  relatedServices?: string[]; // slugs
 }

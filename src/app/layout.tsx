@@ -80,6 +80,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // Google Search Console Verification
+  // TODO: Add verification code from Google Search Console
+  // verification: {
+  //   google: 'YOUR_VERIFICATION_CODE_HERE',
+  // },
 };
 
 export default function RootLayout({
@@ -113,6 +118,7 @@ export default function RootLayout({
           }}
         />
         <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             height="1"
             width="1"

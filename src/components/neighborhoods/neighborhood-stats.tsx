@@ -1,5 +1,5 @@
 import { NeighborhoodStats as Stats } from '@/types/neighborhood';
-import { Home, Calendar, Users, TrendingUp } from 'lucide-react';
+import { Home, Users, TrendingUp } from 'lucide-react';
 
 interface Props {
   stats: Stats;
@@ -18,7 +18,7 @@ export function NeighborhoodStats({ stats, name }: Props) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-gradient-to-br from-[#151A4A] to-[#0F1238] rounded-2xl p-6 text-white">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-white/20 rounded-lg">
@@ -31,20 +31,8 @@ export function NeighborhoodStats({ stats, name }: Props) {
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-[#C9A961] to-[#B89A52] rounded-2xl p-6 text-white">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-white/20 rounded-lg">
-              <Calendar className="h-6 w-6" />
-            </div>
-            <span className="text-white/80 text-sm font-medium">Days on Market</span>
-          </div>
-          <p className="text-3xl font-bold">
-            {stats.avgDaysOnMarket} days
-          </p>
-        </div>
-
         {stats.population && (
-          <div className="bg-gradient-to-br from-[#151A4A] to-[#0F1238] rounded-2xl p-6 text-white">
+          <div className="bg-gradient-to-br from-[#C9A961] to-[#B89A52] rounded-2xl p-6 text-white">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 bg-white/20 rounded-lg">
                 <Users className="h-6 w-6" />
@@ -58,7 +46,7 @@ export function NeighborhoodStats({ stats, name }: Props) {
         )}
 
         {stats.walkabilityScore && (
-          <div className="bg-gradient-to-br from-[#C9A961] to-[#B89A52] rounded-2xl p-6 text-white">
+          <div className="bg-gradient-to-br from-[#151A4A] to-[#0F1238] rounded-2xl p-6 text-white">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 bg-white/20 rounded-lg">
                 <TrendingUp className="h-6 w-6" />

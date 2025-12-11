@@ -149,8 +149,8 @@ const nextConfig: NextConfig = {
             // Remaining vendor code
             lib: {
               test: /[\\/]node_modules[\\/]/,
-              name(module: any) {
-                const packageName = module.context.match(
+              name(module: { context?: string | null }) {
+                const packageName = module.context?.match(
                   /[\\/]node_modules[\\/](.*?)([\\/]|$)/
                 )?.[1];
                 return `npm.${packageName?.replace('@', '')}`;

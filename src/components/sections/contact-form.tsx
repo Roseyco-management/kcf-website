@@ -43,7 +43,7 @@ export function ContactForm({ onSubmit, variant = "default" }: ContactFormProps)
         await new Promise((resolve) => setTimeout(resolve, 1500));
       }
       setIsSubmitted(true);
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);

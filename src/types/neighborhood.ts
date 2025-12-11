@@ -7,13 +7,12 @@ export interface School {
 
 export interface Amenity {
   name: string;
-  type: 'Park' | 'Library' | 'Pool' | 'Community Center' | 'Playground' | 'Shopping' | 'Restaurant';
+  type: 'Park' | 'Library' | 'Pool' | 'Community Center' | 'Playground' | 'Shopping' | 'Restaurant' | 'Museum';
   description?: string;
 }
 
 export interface NeighborhoodStats {
   medianPrice: number;
-  avgDaysOnMarket: number;
   population?: number;
   walkabilityScore?: number;
 }

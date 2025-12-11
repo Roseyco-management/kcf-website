@@ -3,6 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getServiceBySlug, getAllServiceSlugs } from '@/data/services';
 import { getNeighborhoodBySlug } from '@/data/neighborhoods';
+import { ServiceSchema } from '@/components/seo/service-schema';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
+import type { LucideIcon } from 'lucide-react';
 import {
   ArrowRight,
   Check,
@@ -51,7 +54,7 @@ interface Props {
 }
 
 // Icon mapping
-const iconMap: { [key: string]: any } = {
+const iconMap: Record<string, LucideIcon> = {
   users: Users,
   'file-check': FileCheck,
   search: Search,
@@ -139,6 +142,17 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-[#F8F6F2]">
+      {/* SEO Schema Markup */}
+      <ServiceSchema service={service} />
+
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: 'Services', href: '/#services' },
+          { label: service.name },
+        ]}
+      />
+
       {/* Hero Section */}
       <div className="relative bg-white border-b-4 border-[#C9A961]">
         {/* Background Pattern */}
@@ -288,7 +302,7 @@ export default async function ServicePage({ params }: Props) {
                 Client <span className="text-[#C9A961]">Success Stories</span>
               </h2>
               <p className="text-xl text-[#4A4A4A] max-w-2xl mx-auto">
-                Hear from families we've helped achieve their real estate goals
+                Hear from families we&apos;ve helped achieve their real estate goals
               </p>
             </div>
 
@@ -307,7 +321,7 @@ export default async function ServicePage({ params }: Props) {
 
                   {/* Quote */}
                   <p className="text-[#4A4A4A] leading-relaxed mb-6 text-lg">
-                    "{testimonial.content}"
+                    &ldquo;{testimonial.content}&rdquo;
                   </p>
 
                   {/* Author */}
@@ -402,7 +416,7 @@ export default async function ServicePage({ params }: Props) {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Let's Make Your
+            Let&apos;s Make Your
             <span className="block text-[#C9A961]">Real Estate Goals Reality</span>
           </h2>
 

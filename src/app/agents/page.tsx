@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Hero } from "@/components/sections/hero";
 import { SectionWrapper, SectionHeader } from "@/components/sections/section-wrapper";
 import { CTASection } from "@/components/sections/cta-section";
+import { TeamSchema } from "@/components/seo/team-schema";
 import { Phone, Mail, Home, Users, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -27,10 +28,10 @@ const teamMembers = [
   {
     name: "Ernesto Tinoco",
     role: "Senior Consultant",
-    image: "/agents/KC Ernesto.jpg",
+    image: "/agents/Ernesto Rooftop Shot.jpg",
     phone: "+1 (816) 575-7763",
     email: "ernesto@kcfhomes.com",
-    bio: "With over 15 years of experience in Kansas City real estate, Ernesto founded KC Family Home Team with a singular vision: to provide families with the personalized, attentive service they deserve. As Senior Consultant, he oversees all operations while personally guiding clients through their real estate journey, ensuring every transaction reaches its fullest potential.",
+    bio: "Real Estate Jedi Master, turned Top G, now looking to grow my team and my business, sky's the limit. Licensed in KS and MO since 2010. Started as a wholesaler, then property manager until I went full time as an agent in 2014. I've represented hundreds of buyers and sellers with great attention to detail and strong negotiation skills to look out for their best interest. From first time buyers to families buying their 2nd or their forever home I've got you covered. Our strong focus on personalized, stress-free home buying will suit every family's needs. Trust our expertise and commitment to your family's journey. We focus on transparency, clear communication and a genuine understanding of your needs, backed up by a service satisfaction promise.",
     specialties: ["Listing Strategy", "Negotiation", "Market Analysis", "Team Leadership"],
     stats: [
       { label: "Years Experience", value: "15+" },
@@ -41,11 +42,11 @@ const teamMembers = [
   {
     name: "Monica Hammer",
     role: "Homeowner Specialist",
-    image: "/agents/KC Monica.jpg",
+    image: "/agents/Monica Rooftop Shot.jpg",
     phone: "+1 (816) 575-7763",
     email: "monica@kcfhomes.com",
-    bio: "Monica brings a caring, thorough approach to helping homeowners navigate the real estate process. Whether you're selling your family home or looking to find your next dream property, Monica takes the time to understand your needs and ensures every step of the journey is handled with care and attention to detail.",
-    specialties: ["Homeowner Relations", "Client Communication", "Property Marketing", "Family Relocations"],
+    bio: "Hi, I'm Monica Realtor® with the KC Family Home Team at United Real Estate KC, licensed in Kansas and Missouri. I help buyers, first-time homeowners, and investors navigate the real estate process with confidence and ease. My journey into real estate began when I bought my first home. I loved the idea of owning a home, but the process was confusing and overwhelming — and I wasn't told about programs like first-time homebuyer assistance that could have helped with my down payment. That experience stuck with me and inspired me to become a Realtor® who truly guides clients every step of the way. Today, my goal is simple: to make the homebuying process clear, stress-free, and even enjoyable. I treat every client like family, answer every question, and make sure they know about every option available — from down payment assistance programs to smart investment strategies. Helping people achieve their real estate goals isn't just my job — it's my passion.",
+    specialties: ["First-Time Buyers", "Down Payment Assistance", "Investment Properties", "Client Communication"],
     stats: [
       { label: "Families Helped", value: "200+" },
       { label: "Avg. Response Time", value: "< 1hr" },
@@ -55,15 +56,29 @@ const teamMembers = [
   {
     name: "Chris Schinzel",
     role: "Transaction Coordinator and Property Manager",
-    image: "/agents/KC Chris.jpg",
+    image: "/agents/Chris Rooftop Shot.jpg",
     phone: "+1 (816) 575-7763",
     email: "chris@kcfhomes.com",
-    bio: "Chris is the organizational backbone of KC Family Home Team. As Transaction Coordinator and Property Manager, he ensures every transaction runs smoothly from contract to close and manages property-related details with precision. His attention to detail and proactive communication keep clients informed and stress-free throughout the process.",
-    specialties: ["Transaction Management", "Property Management", "Document Coordination", "Problem Solving"],
+    bio: "Chris has years of experience as a Transaction Coordinator and Property Manager, where he has managed contract documents, deadlines, and communication among title companies, agents, lenders, and clients to ensure smooth, successful transactions. His experience overseeing remodel projects and coordinating with contractors has deepened his understanding of how homes function best and strengthened his commitment to providing quality rental opportunities for others. With a background in education and as a proud father of two, Chris brings strong organizational skills, attention to detail, and a genuine dedication to helping families find and enjoy great homes.",
+    specialties: ["Transaction Management", "Property Management", "Document Coordination", "Contract Coordination"],
     stats: [
       { label: "Transactions Managed", value: "500+" },
       { label: "On-Time Closings", value: "98%" },
       { label: "Client Satisfaction", value: "100%" },
+    ],
+  },
+  {
+    name: "Sandy",
+    role: "Real Estate Specialist",
+    image: "/agents/Sandy Rooftop Shot.jpg",
+    phone: "+1 (816) 575-7763",
+    email: "sandy@kcfhomes.com",
+    bio: "Sandy brings expertise and dedication to helping Kansas City families achieve their real estate goals. More details coming soon.",
+    specialties: ["Client Relations", "Market Knowledge", "Family Homes", "Customer Service"],
+    stats: [
+      { label: "Years Experience", value: "10+" },
+      { label: "Families Helped", value: "150+" },
+      { label: "Client Rating", value: "5.0" },
     ],
   },
 ];
@@ -81,6 +96,13 @@ function AgentCard({ agent, index }: { agent: typeof teamMembers[0]; index: numb
             alt={agent.name}
             fill
             className="object-cover rounded-2xl"
+            style={
+              agent.name === "Sandy"
+                ? { objectPosition: '80% center' }
+                : agent.name === "Ernesto Tinoco"
+                  ? { objectPosition: '60% center' }
+                  : undefined
+            }
           />
         </div>
         {/* Decorative elements */}
@@ -148,6 +170,9 @@ function AgentCard({ agent, index }: { agent: typeof teamMembers[0]; index: numb
 export default function AgentsPage() {
   return (
     <main>
+      {/* Team Member Schema */}
+      <TeamSchema />
+
       {/* Hero Section */}
       <Hero
         badge="Our Team"
@@ -155,7 +180,7 @@ export default function AgentsPage() {
         highlightedWord="Experts"
         description="Behind every successful home transaction is a dedicated team of professionals. Get to know the people who will guide you through your real estate journey."
         primaryCTA={{ text: "Contact Our Team", href: "/contact" }}
-        backgroundImage="/agents/KC Team Image 1.jpg"
+        backgroundImage="/agents/KC Team Rooftop Shot.jpg"
       />
 
       {/* Team Intro */}

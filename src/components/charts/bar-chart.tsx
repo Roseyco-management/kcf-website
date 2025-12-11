@@ -11,10 +11,14 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import { ChartLine, ChartDataPoint } from '@/types/analytics';
+import { ChartLine } from '@/types/analytics';
+
+type BarChartDatum = {
+  color?: string;
+} & Record<string, string | number | undefined>;
 
 interface BarChartProps {
-  data: any[]; // Accept any array of objects
+  data: BarChartDatum[];
   bars?: ChartLine[]; // Optional - for multi-bar charts
   dataKey?: string; // Key for the data value (for single bar)
   nameKey?: string; // Key for the name/label

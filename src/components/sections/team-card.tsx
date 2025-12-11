@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { Phone, Mail, Linkedin } from "lucide-react";
 
 interface TeamMember {
@@ -41,6 +40,13 @@ export function TeamCard({ member, index = 0, variant = "default" }: TeamCardPro
           alt={member.name}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
+          style={
+            member.name === "Sandy"
+              ? { objectPosition: '80% 30%' }
+              : member.name === "Ernesto Tinoco"
+                ? { objectPosition: '60% center' }
+                : undefined
+          }
         />
         {/* Gold accent border on hover */}
         <div className="absolute inset-0 border-4 border-transparent group-hover:border-accent/50 rounded-2xl transition-colors duration-300" />
@@ -155,12 +161,14 @@ interface TeamGridProps {
 }
 
 export function TeamGrid({ members, variant = "default" }: TeamGridProps) {
-  // For 3 members, use 3-column layout centered
+  // Handle different member counts
   const gridCols = members.length === 3
     ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto"
-    : variant === "detailed"
-      ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-      : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
+    : members.length === 4
+      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto"
+      : variant === "detailed"
+        ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
 
   return (
     <div className={`grid gap-8 lg:gap-10 ${gridCols}`}>

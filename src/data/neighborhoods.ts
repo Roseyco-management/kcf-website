@@ -32,27 +32,9 @@ export const neighborhoods: Neighborhood[] = [
     // Schools
     schools: [
       {
-        name: 'Blue Valley Elementary',
-        type: 'Elementary',
-        rating: 9.5,
-        district: 'Blue Valley USD 229',
-      },
-      {
-        name: 'Blue Valley Middle School',
-        type: 'Middle',
-        rating: 9.3,
-        district: 'Blue Valley USD 229',
-      },
-      {
-        name: 'Blue Valley High School',
-        type: 'High',
-        rating: 9.7,
-        district: 'Blue Valley USD 229',
-      },
-      {
         name: 'Blue Valley Northwest High School',
         type: 'High',
-        rating: 9.6,
+        rating: 9,
         district: 'Blue Valley USD 229',
       },
     ],
@@ -70,9 +52,9 @@ export const neighborhoods: Neighborhood[] = [
         description: 'Interactive farmstead with animals, gardens, and educational programs for kids',
       },
       {
-        name: 'Southlake Park',
+        name: 'South Lake Park',
         type: 'Park',
-        description: 'Large community park with playgrounds, sports fields, and picnic areas',
+        description: '14-acre community park with playgrounds, sports fields, fishing lake, and picnic areas',
       },
       {
         name: 'Matt Ross Community Center',
@@ -101,17 +83,16 @@ export const neighborhoods: Neighborhood[] = [
 
     // Stats
     stats: {
-      medianPrice: 425000,
-      avgDaysOnMarket: 25,
-      population: 195000,
-      walkabilityScore: 68,
+      medianPrice: 475000,
+      population: 203000,
+      walkabilityScore: 35,
     },
 
     // Local Insights
     insights: [
       {
         title: 'Farmer\'s Market Every Saturday',
-        description: 'The Overland Park Farmer\'s Market runs April-October with local produce, crafts, and live music - a family favorite!',
+        description: 'The Overland Park Farmer\'s Market runs April-November with local produce, crafts, and live music - a family favorite!',
         category: 'Event',
       },
       {
@@ -120,13 +101,8 @@ export const neighborhoods: Neighborhood[] = [
         category: 'Restaurant',
       },
       {
-        title: 'Ice Skating at the Pavilion',
-        description: 'Seasonal outdoor ice skating rink at Corporate Woods - a magical winter experience for families.',
-        category: 'Activity',
-      },
-      {
         title: 'Hidden Gem: Tomahawk Creek Trail',
-        description: '8-mile paved trail perfect for family bike rides, connecting multiple parks and neighborhoods.',
+        description: '10+ mile paved trail perfect for family bike rides, connecting multiple parks and neighborhoods.',
         category: 'Hidden Gem',
       },
     ],
@@ -169,25 +145,25 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Summit Pointe Elementary',
         type: 'Elementary',
-        rating: 9.2,
+        rating: 6,
         district: 'Lee\'s Summit R-7',
       },
       {
         name: 'Bernard C. Campbell Middle School',
         type: 'Middle',
-        rating: 9.0,
+        rating: 4,
         district: 'Lee\'s Summit R-7',
       },
       {
         name: 'Lee\'s Summit West High School',
         type: 'High',
-        rating: 9.4,
+        rating: 7,
         district: 'Lee\'s Summit R-7',
       },
       {
         name: 'Lee\'s Summit North High School',
         type: 'High',
-        rating: 9.3,
+        rating: 8,
         district: 'Lee\'s Summit R-7',
       },
     ],
@@ -197,17 +173,12 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Legacy Park',
         type: 'Park',
-        description: 'Sprawling park with walking trails, splash pad, and beautiful lake views',
+        description: 'Sprawling park with J. Thomas Lovell Jr. Community Center featuring indoor aquatics and walking trails',
       },
       {
-        name: 'Harris Park Aquatic Center',
+        name: 'Harris Park - Summit Waves',
         type: 'Pool',
-        description: 'Family-friendly aquatic center with slides, lazy river, and lap pool',
-      },
-      {
-        name: 'Summit Waves Aquatic Facility',
-        type: 'Pool',
-        description: 'Modern water park with slides, zero-depth entry, and family areas',
+        description: 'Outdoor water park with slides, lazy river, lap pool, and family play areas - open seasonally',
       },
     ],
 
@@ -227,31 +198,30 @@ export const neighborhoods: Neighborhood[] = [
     // Stats
     stats: {
       medianPrice: 365000,
-      avgDaysOnMarket: 28,
-      population: 101000,
-      walkabilityScore: 42,
+      population: 106000,
+      walkabilityScore: 20,
     },
 
     // Local Insights
     insights: [
       {
         title: 'Downtown Farmer\'s Market',
-        description: 'Every Saturday May-October, the downtown farmer\'s market features local produce, crafts, and live music - a family tradition!',
+        description: 'Every Saturday and Wednesday, April-October, featuring 50+ local vendors with fresh produce, farm eggs, meat, and handmade goods - a family tradition!',
         category: 'Event',
       },
       {
-        title: 'Best BBQ: Q39',
-        description: 'Award-winning barbecue with a family-friendly atmosphere and outdoor seating perfect for kids.',
+        title: 'Best BBQ: Jack Stack Barbecue',
+        description: 'Award-winning Kansas City BBQ with family-friendly atmosphere and famous burnt ends - consistently rated among the best in the country.',
         category: 'Restaurant',
       },
       {
-        title: 'Hidden Gem: Greenwood Trails',
-        description: 'Beautiful nature trails perfect for family hikes, bird watching, and exploring Kansas City wildlife.',
+        title: 'Hidden Gem: James A. Reed Wildlife Area',
+        description: 'Over 3,000 acres of wildlife habitat with trails perfect for family hikes, bird watching, and exploring nature - a peaceful escape from the city.',
         category: 'Hidden Gem',
       },
       {
-        title: 'Fourth of July Celebration',
-        description: 'Lee\'s Summit hosts one of the largest Independence Day celebrations in the metro with fireworks and family activities.',
+        title: 'Legacy Blast Fourth of July',
+        description: 'Annual free celebration at Legacy Park featuring 1,000+ fireworks, food trucks, live music, inflatables, and face painting - feels like a giant family picnic!',
         category: 'Event',
       },
     ],
@@ -294,7 +264,7 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Brookside Charter School',
         type: 'Elementary',
-        rating: 8.8,
+        rating: 5,
         district: 'Kansas City Public Schools',
       },
       {
@@ -346,7 +316,6 @@ export const neighborhoods: Neighborhood[] = [
     // Stats
     stats: {
       medianPrice: 485000,
-      avgDaysOnMarket: 22,
       population: 8500,
       walkabilityScore: 88,
     },
@@ -355,23 +324,13 @@ export const neighborhoods: Neighborhood[] = [
     insights: [
       {
         title: 'Brookside Art Annual',
-        description: 'Annual outdoor art fair featuring 100+ artists - a beloved neighborhood tradition for over 50 years.',
+        description: 'Annual outdoor art fair featuring 170+ artists - the 38th annual show in 2024.',
         category: 'Event',
-      },
-      {
-        title: 'Best Coffee: Oddly Correct',
-        description: 'Locally-roasted specialty coffee shop with outdoor seating - perfect for a family morning walk.',
-        category: 'Restaurant',
       },
       {
         title: 'Year-Round Walkability',
         description: 'Brookside is one of the few KC neighborhoods where families can walk to school, shops, and restaurants daily.',
         category: 'Hidden Gem',
-      },
-      {
-        title: 'Community Movie Nights',
-        description: 'Free outdoor movie screenings in Brookside Park during summer months bring the whole neighborhood together.',
-        category: 'Event',
       },
     ],
 
@@ -460,7 +419,6 @@ export const neighborhoods: Neighborhood[] = [
     // Stats
     stats: {
       medianPrice: 320000,
-      avgDaysOnMarket: 26,
       population: 12000,
       walkabilityScore: 75,
     },
@@ -469,22 +427,22 @@ export const neighborhoods: Neighborhood[] = [
     insights: [
       {
         title: 'Waldo Pizza - A Kansas City Institution',
-        description: 'Local pizza chain started in Waldo - family-friendly with arcade games and patio seating.',
+        description: 'Local pizza chain started in Waldo in 1980s - family-friendly atmosphere with over 50 toppings and patio seating.',
         category: 'Restaurant',
       },
       {
-        title: 'Farmers Market at 75th & Wornall',
-        description: 'Saturday morning farmers market features local produce and baked goods - great family outing.',
+        title: 'Waldo Farmers Market',
+        description: 'Saturday morning farmers market at Three Trails Community Church (7735 Main St) featuring local produce and baked goods, May-October - great family outing.',
         category: 'Event',
       },
       {
         title: 'Hidden Gem: Trolley Track Trail',
-        description: 'Paved walking/biking trail perfect for family bikes rides, connecting to regional trail system.',
+        description: 'Crushed limestone trail perfect for family bike rides, connecting to regional trail system.',
         category: 'Hidden Gem',
       },
       {
         title: 'Best Value in KC',
-        description: 'Waldo offers Brookside-style walkability at 30-40% lower prices - perfect for first-time family buyers.',
+        description: 'Waldo offers Brookside-style walkability at more affordable prices - perfect for first-time family buyers seeking urban living on a budget.',
         category: 'Hidden Gem',
       },
     ],
@@ -515,7 +473,7 @@ export const neighborhoods: Neighborhood[] = [
     // Overview
     whyFamiliesLoveIt: [
       'Highly-rated Blue Springs R-IV School District',
-      'More than 30 parks with over 900 acres of parkland',
+      'Over 20 parks with nearly 600 acres of parkland',
       'Safe, family-oriented community with low crime',
       'Affordable housing with great value',
       'Easy access to Kansas City and Lee\'s Summit',
@@ -525,21 +483,15 @@ export const neighborhoods: Neighborhood[] = [
     // Schools
     schools: [
       {
-        name: 'Moreland Ridge Elementary',
-        type: 'Elementary',
-        rating: 8.9,
-        district: 'Blue Springs R-IV',
-      },
-      {
-        name: 'Blue Springs South Middle School',
+        name: 'Moreland Ridge Middle School',
         type: 'Middle',
-        rating: 8.7,
+        rating: 8,
         district: 'Blue Springs R-IV',
       },
       {
         name: 'Blue Springs High School',
         type: 'High',
-        rating: 8.8,
+        rating: 8,
         district: 'Blue Springs R-IV',
       },
     ],
@@ -559,7 +511,7 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Vesper Hall',
         type: 'Community Center',
-        description: 'Historic community center hosting family events and activities',
+        description: 'Community center hosting family events, senior programs, and recreational activities',
       },
     ],
 
@@ -579,26 +531,20 @@ export const neighborhoods: Neighborhood[] = [
     // Stats
     stats: {
       medianPrice: 295000,
-      avgDaysOnMarket: 30,
-      population: 57000,
+      population: 60000,
       walkabilityScore: 38,
     },
 
     // Local Insights
     insights: [
       {
-        title: 'Farmfest Every September',
-        description: 'Annual festival celebrating Blue Springs\' agricultural heritage with activities, food, and entertainment for the whole family.',
+        title: 'Blue Springs Fall Fun Festival',
+        description: 'Annual September festival featuring 200+ vendor booths, live music, classic car show, parade, and carnival rides - a beloved community tradition.',
         category: 'Event',
       },
       {
-        title: 'Best Family Restaurant: Chuy\'s',
-        description: 'Tex-Mex restaurant with fun atmosphere, great food, and kids eat free on certain nights.',
-        category: 'Restaurant',
-      },
-      {
         title: 'Hidden Gem: Pink Hill Park',
-        description: 'Secluded park with nature trails, creek, and picnic areas - feels like you\'ve escaped the city.',
+        description: '46-acre park with walking trails, fishing pond, playgrounds, and natural landscapes - a peaceful escape from the city.',
         category: 'Hidden Gem',
       },
       {
@@ -644,21 +590,21 @@ export const neighborhoods: Neighborhood[] = [
     // Schools
     schools: [
       {
-        name: 'Prairie Trail Elementary',
-        type: 'Elementary',
-        rating: 8.9,
+        name: 'Prairie Trail Middle School',
+        type: 'Middle',
+        rating: 7,
         district: 'Olathe USD 233',
       },
       {
         name: 'Indian Trail Middle School',
         type: 'Middle',
-        rating: 8.7,
+        rating: 8,
         district: 'Olathe USD 233',
       },
       {
         name: 'Olathe Northwest High School',
         type: 'High',
-        rating: 9.0,
+        rating: 7,
         district: 'Olathe USD 233',
       },
     ],
@@ -671,43 +617,37 @@ export const neighborhoods: Neighborhood[] = [
         description: 'Historic site with educational programs, animals, and family activities',
       },
       {
-        name: 'Cedar Creek Park',
+        name: 'Cedar Lake Park',
         type: 'Park',
-        description: 'Large community park with playgrounds, trails, and sports fields',
+        description: '67-acre lake and 57-acre park with Cedar Creek Trail access, fishing docks, playground, volleyball courts, and boat ramp',
       },
       {
-        name: 'Stagecoach Park',
+        name: 'Stagecoach Park & Olathe Community Center',
         type: 'Park',
-        description: 'Popular park with aquatic center, playgrounds, and walking trails',
+        description: 'Popular park featuring the Olathe Community Center with indoor aquatic facility, water slides, lazy river, and fitness center',
       },
     ],
 
     otherAmenities: [
       {
-        name: 'Great Mall of the Great Plains',
+        name: 'Downtown Olathe Shopping',
         type: 'Shopping',
-        description: 'Large shopping center with major retailers and restaurants',
-      },
-      {
-        name: 'Olathe Community Center',
-        type: 'Community Center',
-        description: 'Modern facility with pools, fitness center, and family programs',
+        description: 'Growing downtown area with local shops, restaurants, and family-friendly businesses',
       },
     ],
 
     // Stats
     stats: {
-      medianPrice: 385000,
-      avgDaysOnMarket: 27,
-      population: 145000,
-      walkabilityScore: 35,
+      medianPrice: 410000,
+      population: 149000,
+      walkabilityScore: 30,
     },
 
     // Local Insights
     insights: [
       {
         title: 'New Construction Hot Spot',
-        description: 'Olathe has more new construction than any other Kansas City suburb - perfect if you want a brand new home with modern features.',
+        description: 'Olathe is one of Kansas City\'s fastest-growing suburbs with abundant new construction - perfect if you want a brand new home with modern features.',
         category: 'Hidden Gem',
       },
       {
@@ -763,21 +703,9 @@ export const neighborhoods: Neighborhood[] = [
     // Schools
     schools: [
       {
-        name: 'Liberty Elementary',
-        type: 'Elementary',
-        rating: 8.6,
-        district: 'Liberty 53',
-      },
-      {
-        name: 'South Valley Middle School',
-        type: 'Middle',
-        rating: 8.4,
-        district: 'Liberty 53',
-      },
-      {
         name: 'Liberty High School',
         type: 'High',
-        rating: 8.8,
+        rating: 9,
         district: 'Liberty 53',
       },
     ],
@@ -805,16 +733,15 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Liberty Community Center',
         type: 'Community Center',
-        description: 'Recreation facility with pools and family programs',
+        description: '9,300 sq ft wellness center with 4 pools (2 indoor, 2 outdoor), fitness equipment, and family programs',
       },
     ],
 
     // Stats
     stats: {
-      medianPrice: 340000,
-      avgDaysOnMarket: 28,
-      population: 33000,
-      walkabilityScore: 42,
+      medianPrice: 375000,
+      population: 31000,
+      walkabilityScore: 23,
     },
 
     // Local Insights
@@ -831,7 +758,7 @@ export const neighborhoods: Neighborhood[] = [
       },
       {
         title: 'Hidden Gem: Belvoir Winery',
-        description: 'Family-friendly winery with outdoor space, food trucks, and beautiful views - parents relax while kids play.',
+        description: 'Historic winery on 170 acres with beautiful outdoor space, gazebo, and scenic views - great for events and wine tasting.',
         category: 'Hidden Gem',
       },
       {
@@ -879,19 +806,13 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Leawood Elementary',
         type: 'Elementary',
-        rating: 9.7,
-        district: 'Blue Valley USD 229',
-      },
-      {
-        name: 'Leawood Middle School',
-        type: 'Middle',
-        rating: 9.5,
+        rating: 7,
         district: 'Blue Valley USD 229',
       },
       {
         name: 'Blue Valley West High School',
         type: 'High',
-        rating: 9.8,
+        rating: 10,
         district: 'Blue Valley USD 229',
       },
     ],
@@ -901,12 +822,12 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Leawood City Park',
         type: 'Park',
-        description: 'Beautiful park with playgrounds, gardens, and amphitheater',
+        description: '66-acre park with all-inclusive playground, soccer fields, tennis courts, Leawood Aquatic Center, and Tomahawk Greenway Trail access',
       },
       {
         name: 'Ironwoods Park',
         type: 'Park',
-        description: 'Premium park with trails, lodge, and natural areas',
+        description: '115-acre park with 2 miles of trails, The Lodge at Ironwoods, Prairie Oak Nature Center, amphitheater, and fishing lake',
       },
     ],
 
@@ -919,16 +840,15 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Leawood Community Center',
         type: 'Community Center',
-        description: 'State-of-the-art facility with pools, fitness, and programs',
+        description: 'Community facility at City Hall with meeting rooms and programming for all ages',
       },
     ],
 
     // Stats
     stats: {
-      medianPrice: 625000,
-      avgDaysOnMarket: 30,
-      population: 35000,
-      walkabilityScore: 45,
+      medianPrice: 780000,
+      population: 34000,
+      walkabilityScore: 22,
     },
 
     // Local Insights
@@ -1015,7 +935,7 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Berkley Riverfront Park',
         type: 'Park',
-        description: 'Waterfront park with playground, splash pad, and event space',
+        description: '17-acre riverfront park with playground, biking paths, sand volleyball courts, and outdoor fitness station',
       },
       {
         name: 'Town of Kansas Bridge',
@@ -1032,17 +952,16 @@ export const neighborhoods: Neighborhood[] = [
       },
       {
         name: 'Arabia Steamboat Museum',
-        type: 'Shopping',
-        description: 'Unique museum perfect for family outings',
+        type: 'Museum',
+        description: 'Historic museum featuring artifacts from 1856 steamboat - great for family outings (closing November 2026)',
       },
     ],
 
     // Stats
     stats: {
       medianPrice: 395000,
-      avgDaysOnMarket: 25,
       population: 5000,
-      walkabilityScore: 95,
+      walkabilityScore: 84,
     },
 
     // Local Insights
@@ -1053,8 +972,8 @@ export const neighborhoods: Neighborhood[] = [
         category: 'Event',
       },
       {
-        title: 'Best Brunch: The Antler Room',
-        description: 'Michelin-worthy restaurant with family-friendly weekend brunch - urban dining at its finest.',
+        title: 'Best Brunch: The Farmhouse',
+        description: 'Farm-to-table restaurant at 3rd and Delaware featuring unique brunch entrees with fresh local ingredients - perfect for family brunch.',
         category: 'Restaurant',
       },
       {
@@ -1107,19 +1026,19 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'Park Hill South High School',
         type: 'High',
-        rating: 8.9,
+        rating: 7,
         district: 'Park Hill',
       },
       {
         name: 'North Kansas City High School',
         type: 'High',
-        rating: 8.5,
+        rating: 5,
         district: 'North Kansas City 74',
       },
       {
         name: 'Staley High School',
         type: 'High',
-        rating: 8.7,
+        rating: 8,
         district: 'North Kansas City 74',
       },
     ],
@@ -1129,17 +1048,17 @@ export const neighborhoods: Neighborhood[] = [
       {
         name: 'English Landing Park',
         type: 'Park',
-        description: 'Riverfront park with trails, playgrounds, and splash pad',
+        description: '68-acre riverfront park with 3 miles of trails, playgrounds, disc golf, and Missouri River views',
       },
       {
         name: 'Penguin Park',
         type: 'Park',
-        description: 'Unique themed park beloved by Northland families',
+        description: 'Destination park featuring iconic 23-foot penguin and 26-foot kangaroo slide - beloved by generations of KC families',
       },
       {
         name: 'Line Creek Trail',
         type: 'Park',
-        description: 'Extensive trail system perfect for family bike rides',
+        description: '8-mile paved trail through wooded areas with scenic waterfall - perfect for family bike rides',
       },
     ],
 
@@ -1159,7 +1078,6 @@ export const neighborhoods: Neighborhood[] = [
     // Stats
     stats: {
       medianPrice: 285000,
-      avgDaysOnMarket: 30,
       population: 150000,
       walkabilityScore: 32,
     },
