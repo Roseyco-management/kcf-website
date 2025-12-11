@@ -136,7 +136,7 @@ export default function HowItWorksPage() {
           highlightedWord="Success"
           description="Our approach is designed around what families actually need - not industry norms."
         />
-        <IconFeatureGrid features={benefits} />
+        <IconFeatureGrid features={benefits} columns={2} />
       </SectionWrapper>
 
       {/* Buying Process */}

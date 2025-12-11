@@ -160,13 +160,13 @@ export default function HomePage() {
     <main>
       {/* Hero Section */}
       <Hero
-        badge="Kansas City's Family-Focused Realtors"
-        title="Find Your Family's Perfect Home"
-        highlightedWord="Perfect"
-        description="We specialize in helping growing families buy and sell homes in the Kansas City metro area. With personalized service and local expertise, we make your real estate journey stress-free."
-        primaryCTA={{ text: "Start Your Search", href: "/contact" }}
-        secondaryCTA={{ text: "Sell Your Home", href: "/how-it-works" }}
+        title="Empowering Growing Families with personalized, stress-free home-buying."
+        highlightedWord="Empowering Growing Families"
+        subtitle="Trust our expertise and commitment to your family's journey"
+        primaryCTA={{ text: "What's in it for you?", href: "/how-it-works" }}
+        secondaryCTA={{ text: "Talk to an agent", href: "/contact" }}
         backgroundImage="/properties/KC Home Image 1.jpg"
+        centered={true}
       />
 
       {/* Stats Section - Prominent band */}

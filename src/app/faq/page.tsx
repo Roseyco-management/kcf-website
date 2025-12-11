@@ -106,7 +106,8 @@ export default function FAQPage() {
         title="Your Questions, Answered"
         highlightedWord="Answered"
         description="We know the home buying and selling process can be confusing. Here are answers to the most common questions we hear from Kansas City families."
-        centered
+        centered={true}
+        backgroundImage="/properties/KC Home Image 2.jpg"
       />
 
       {/* General FAQs */}

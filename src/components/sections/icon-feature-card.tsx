@@ -123,11 +123,16 @@ interface FeatureGridProps {
     title: string;
     description: string;
   }>;
+  columns?: 2 | 3;
 }
 
-export function IconFeatureGrid({ features }: FeatureGridProps) {
+export function IconFeatureGrid({ features, columns = 3 }: FeatureGridProps) {
+  const gridClass = columns === 2
+    ? "grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+    : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8";
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div className={gridClass}>
       {features.map((feature, index) => (
         <IconFeatureCard
           key={feature.title}

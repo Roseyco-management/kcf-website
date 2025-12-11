@@ -25,8 +25,15 @@ interface HeroProps {
 }
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.6, 0.05, 0.01, 0.9],
+    },
+  },
 };
 
 const staggerContainer = {
@@ -34,7 +41,8 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
     },
   },
 };
@@ -62,8 +70,8 @@ export function Hero({
   }
 
   return (
-    <section className="relative min-h-[85vh] flex items-center pt-28 pb-20 overflow-hidden">
-      {/* Background Image with Subtle Overlay */}
+    <section className="relative min-h-[90vh] flex items-center pt-28 pb-20 overflow-hidden">
+      {/* Background Image with Dramatic Overlay */}
       {backgroundImage && (
         <div className="absolute inset-0 z-0">
           <Image
@@ -74,8 +82,9 @@ export function Hero({
             priority
             quality={90}
           />
-          {/* Light gradient - lets the house image shine through */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-transparent" />
+          {/* Darker, more dramatic gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/60 to-primary/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" />
         </div>
       )}
 
@@ -94,41 +103,58 @@ export function Hero({
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className={`max-w-3xl ${centered ? "mx-auto text-center" : ""}`}
+          className={`max-w-6xl ${centered ? "mx-auto text-center" : ""}`}
         >
           {/* Badge */}
           {badge && (
             <motion.div variants={fadeInUp}>
-              <span
-                className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 ${
+              <p
+                className={`text-sm md:text-base font-bold tracking-[0.3em] mb-12 uppercase ${
                   backgroundImage
-                    ? "bg-accent/30 text-accent border border-accent/40"
-                    : "bg-accent/20 text-primary"
+                    ? "text-white drop-shadow-lg"
+                    : "text-muted-foreground"
                 }`}
               >
                 {badge}
-              </span>
+              </p>
             </motion.div>
           )}
 
           {/* Title */}
           <motion.h1
             variants={fadeInUp}
-            className={`mb-6 ${backgroundImage ? "text-white" : "text-foreground"}`}
+            className={`mb-6 text-4xl md:text-5xl lg:text-7xl font-black leading-[1.2] ${
+              backgroundImage
+                ? "text-white drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_40%)]"
+                : "text-foreground"
+            }`}
+            style={{ letterSpacing: '-0.02em' }}
           >
-            {beforeHighlight}
-            {highlightedWord && (
-              <span className="text-accent">{highlightedWord}</span>
+            {highlightedWord ? (
+              <>
+                <span className="block text-accent uppercase mb-2 italic [text-shadow:_-1px_-1px_0_#151A4A,_1px_-1px_0_#151A4A,_-1px_1px_0_#151A4A,_1px_1px_0_#151A4A]">
+                  {highlightedWord}
+                </span>
+                <span className="block mb-6">{afterHighlight}</span>
+              </>
+            ) : (
+              <>
+                {beforeHighlight}
+                {afterHighlight}
+              </>
             )}
-            {afterHighlight}
           </motion.h1>
 
           {/* Subtitle */}
           {subtitle && (
             <motion.p
               variants={fadeInUp}
-              className={`text-xl md:text-2xl mb-4 ${
-                backgroundImage ? "text-white/90" : "text-muted-foreground"
+              className={`text-2xl md:text-3xl lg:text-4xl mb-14 italic font-light max-w-5xl leading-relaxed ${
+                centered ? "mx-auto" : ""
+              } ${
+                backgroundImage
+                  ? "text-white drop-shadow-2xl [text-shadow:_0_4px_16px_rgb(0_0_0_/_50%)]"
+                  : "text-muted-foreground"
               }`}
             >
               {subtitle}
@@ -140,6 +166,8 @@ export function Hero({
             <motion.p
               variants={fadeInUp}
               className={`text-lg leading-relaxed mb-10 max-w-2xl ${
+                centered ? "mx-auto" : ""
+              } ${
                 backgroundImage ? "text-white/85" : "text-muted-foreground"
               }`}
             >
@@ -147,34 +175,33 @@ export function Hero({
             </motion.p>
           )}
 
-          {/* CTAs - Stronger, more prominent */}
+          {/* CTAs - Powerful and eye-catching */}
           {(primaryCTA || secondaryCTA) && (
             <motion.div
               variants={fadeInUp}
-              className={`flex flex-col sm:flex-row gap-4 ${
+              className={`flex flex-col sm:flex-row gap-6 ${
                 centered ? "justify-center" : ""
               }`}
             >
               {primaryCTA && (
                 <Link
                   href={primaryCTA.href}
-                  className={`group inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 shadow-lg hover:shadow-xl ${
+                  className={`inline-flex items-center justify-center px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-2xl ${
                     backgroundImage
-                      ? "bg-accent text-primary hover:bg-accent/90"
-                      : "bg-accent text-primary hover:bg-accent/90"
+                      ? "bg-primary text-white hover:bg-primary/90 hover:shadow-primary/50"
+                      : "bg-primary text-white hover:bg-primary/90"
                   }`}
                 >
                   {primaryCTA.text}
-                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Link>
               )}
               {secondaryCTA && (
                 <Link
                   href={secondaryCTA.href}
-                  className={`inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 ${
+                  className={`inline-flex items-center justify-center px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-xl ${
                     backgroundImage
-                      ? "bg-white text-primary hover:bg-cream"
-                      : "bg-primary text-white hover:bg-primary/90"
+                      ? "bg-white text-primary hover:bg-white/95 backdrop-blur-sm"
+                      : "bg-white text-primary border-2 border-primary hover:bg-gray-50"
                   }`}
                 >
                   {secondaryCTA.text}
