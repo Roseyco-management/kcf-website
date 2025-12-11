@@ -39,7 +39,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#F8F6F2]">
       {/* Hero Section - Redesigned with better contrast */}
-      <div className="relative bg-white border-b-4 border-[#C9A961] min-h-[70vh] flex items-center justify-center">
+      <div className="relative bg-white border-b-4 border-[#C9A961] min-h-[70vh] flex items-center justify-center pt-28">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
