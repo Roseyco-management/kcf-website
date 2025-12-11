@@ -39,7 +39,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#F8F6F2]">
       {/* Hero Section - Redesigned with better contrast */}
-      <div className="relative bg-white border-b-4 border-[#C9A961] min-h-[70vh] flex items-center">
+      <div className="relative bg-white border-b-4 border-[#C9A961] min-h-[70vh] flex items-center justify-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -55,7 +55,7 @@ export default function BlogPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_40%)]">
