@@ -16,6 +16,7 @@ import { PlatformCard } from '@/components/analytics/platform-card';
 import { TopPagesList } from '@/components/analytics/top-pages-list';
 import { MetricBox } from '@/components/analytics/metric-box';
 import { LineChart } from '@/components/charts/line-chart';
+import { PeriodSelector } from '@/components/analytics/period-selector';
 import { getRoseyCoAnalytics } from '@/lib/roseyco-analytics';
 import {
   generateSparklineData,
@@ -24,9 +25,13 @@ import {
 import { formatDuration, safeNumber } from '@/lib/analytics/formatters';
 import { TopPage } from '@/types/analytics';
 
-export default async function AdminDashboard() {
-  // Fetch real analytics data
-  const period = '30d';
+export default async function AdminDashboard({
+  searchParams,
+}: {
+  searchParams: { period?: string };
+}) {
+  // Fetch real analytics data with selected period
+  const period = (searchParams.period || '30d') as '7d' | '30d' | '90d';
   const roseyCoData = await getRoseyCoAnalytics(period);
 
   // Extract data with fallbacks
@@ -79,13 +84,19 @@ export default async function AdminDashboard() {
     return data;
   }
 
+  // Get period label for display
+  const periodLabel = period === '7d' ? 'Last 7 days' : period === '30d' ? 'Last 30 days' : 'Last 90 days';
+
   return (
     <div className="space-y-8">
       {/* Hero KPI Section */}
       <section>
-        <div className="mb-6">
-          <h2 className="text-3xl font-bold text-[#151A4A]">Analytics Overview</h2>
-          <p className="text-[#4A4A4A] mt-1">Last 30 days performance metrics</p>
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <h2 className="text-3xl font-bold text-[#151A4A]">Analytics Overview</h2>
+            <p className="text-[#4A4A4A] mt-1">{periodLabel} performance metrics</p>
+          </div>
+          <PeriodSelector />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -94,8 +105,9 @@ export default async function AdminDashboard() {
             value={totalVisits.toLocaleString()}
             sparklineData={generateSparklineData(totalVisits)}
             detailedData={generateDetailedData(totalVisits)}
+            changeLabel={periodLabel}
             icon={<Users className="h-6 w-6" />}
-            tooltip="Total number of visits to your website in the last 30 days. This includes both new and returning visitors across all traffic sources."
+            tooltip={`Total number of visits to your website in the ${periodLabel.toLowerCase()}. This includes both new and returning visitors across all traffic sources.`}
             color="navy"
           />
 
@@ -104,8 +116,9 @@ export default async function AdminDashboard() {
             value={totalLeads.toLocaleString()}
             sparklineData={generateSparklineData(totalLeads)}
             detailedData={generateDetailedData(totalLeads)}
+            changeLabel={periodLabel}
             icon={<MousePointerClick className="h-6 w-6" />}
-            tooltip="Number of qualified leads generated through contact forms, phone calls, and chat interactions in the last 30 days."
+            tooltip={`Number of qualified leads generated through contact forms, phone calls, and chat interactions in the ${periodLabel.toLowerCase()}.`}
             color="gold"
           />
 
@@ -114,6 +127,7 @@ export default async function AdminDashboard() {
             value={`${conversionRate}%`}
             sparklineData={generateSparklineData(Number(conversionRate) * 100)}
             detailedData={generateDetailedData(Number(conversionRate) * 100)}
+            changeLabel={periodLabel}
             icon={<TrendingUp className="h-6 w-6" />}
             tooltip="Percentage of visitors who completed a lead form or contacted you. Calculated as (Total Leads / Total Visits) × 100."
             color="green"
@@ -124,6 +138,7 @@ export default async function AdminDashboard() {
             value={formatDuration(avgSessionDuration)}
             sparklineData={generateSparklineData(avgSessionDuration)}
             detailedData={generateDetailedData(avgSessionDuration)}
+            changeLabel={periodLabel}
             icon={<Clock className="h-6 w-6" />}
             tooltip="Average time visitors spend on your website per session. Longer sessions typically indicate higher engagement."
             color="purple"
@@ -213,7 +228,7 @@ export default async function AdminDashboard() {
       <section>
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-[#151A4A]">Google Search Console</h2>
-          <p className="text-[#4A4A4A] mt-1">Organic search performance via RoseyCo Analytics</p>
+          <p className="text-[#4A4A4A] mt-1">Organic search performance via RoseyCo Analytics - {periodLabel}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -222,7 +237,7 @@ export default async function AdminDashboard() {
             value={gsc ? gsc.clicks : 0}
             color="navy"
             icon={<MousePointer className="h-6 w-6" />}
-            tooltip="Number of times users clicked through to your website from Google search results in the last 30 days."
+            tooltip={`Number of times users clicked through to your website from Google search results in the ${periodLabel.toLowerCase()}.`}
           />
 
           <MetricBox
@@ -230,7 +245,7 @@ export default async function AdminDashboard() {
             value={gsc ? gsc.impressions : 0}
             color="blue"
             icon={<Eye className="h-6 w-6" />}
-            tooltip="Number of times your website appeared in Google search results, regardless of whether it was clicked."
+            tooltip={`Number of times your website appeared in Google search results in the ${periodLabel.toLowerCase()}.`}
           />
 
           <MetricBox
@@ -255,7 +270,7 @@ export default async function AdminDashboard() {
       <section>
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-[#151A4A]">Google Ads Performance</h2>
-          <p className="text-[#4A4A4A] mt-1">Paid search campaign metrics via RoseyCo Analytics</p>
+          <p className="text-[#4A4A4A] mt-1">Paid search campaign metrics via RoseyCo Analytics - {periodLabel}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -264,7 +279,7 @@ export default async function AdminDashboard() {
             value={googleAds ? `$${googleAds.cost.toLocaleString()}` : '$0'}
             color="orange"
             icon={<DollarSign className="h-6 w-6" />}
-            tooltip="Total amount spent on Google Ads campaigns in the last 30 days."
+            tooltip={`Total amount spent on Google Ads campaigns in the ${periodLabel.toLowerCase()}.`}
           />
 
           <MetricBox
@@ -272,7 +287,7 @@ export default async function AdminDashboard() {
             value={googleAds ? googleAds.clicks : 0}
             color="purple"
             icon={<MousePointerClick className="h-6 w-6" />}
-            tooltip="Number of clicks on your Google Ads in the last 30 days."
+            tooltip={`Number of clicks on your Google Ads in the ${periodLabel.toLowerCase()}.`}
           />
 
           <MetricBox
@@ -280,7 +295,7 @@ export default async function AdminDashboard() {
             value={googleAds ? googleAds.conversions : 0}
             color="green"
             icon={<UserCheck className="h-6 w-6" />}
-            tooltip="Number of conversions (leads, calls, form submissions) generated from Google Ads clicks."
+            tooltip={`Number of conversions (leads, calls, form submissions) generated from Google Ads clicks in the ${periodLabel.toLowerCase()}.`}
           />
 
           <MetricBox
