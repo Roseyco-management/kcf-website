@@ -22,9 +22,11 @@ const nextConfig: NextConfig = {
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['lucide-react', 'react-markdown'],
-    // Turbopack for faster builds (Next.js 14+)
-    // turbo: {},
   },
+
+  // Turbopack configuration (Next.js 16+ default)
+  // Empty config allows Turbopack to use its optimized defaults
+  turbopack: {},
 
   // Production optimizations
   productionBrowserSourceMaps: false, // Disable source maps in production for smaller bundle
