@@ -94,55 +94,41 @@ export default function BlogPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sortedPosts.map((post, index) => (
+          {sortedPosts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group bg-white rounded-2xl overflow-hidden shadow-md border-2 border-[#E5E0D8] hover:border-[#C9A961] hover:shadow-2xl transition-all duration-300"
+              className="group bg-white rounded-2xl shadow-md border-2 border-[#E5E0D8] hover:border-[#C9A961] hover:shadow-2xl transition-all duration-300"
             >
-              {/* Featured Image with Overlay */}
-              <div className="aspect-video bg-gradient-to-br from-[#151A4A] to-[#1A2158] relative overflow-hidden">
-                {/* Decorative Pattern */}
-                <div className="absolute inset-0 opacity-10" style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
-                }} />
-
-                {/* Category Badge on Image */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1.5 bg-[#C9A961] text-white text-xs font-bold rounded-full">
+              {/* Content */}
+              <div className="p-8">
+                {/* Category Badge */}
+                <div className="mb-4">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#C9A961]/10 text-[#C9A961] text-xs font-bold rounded-full">
+                    <Tag className="h-3.5 w-3.5" />
                     {post.category}
                   </span>
                 </div>
 
-                {/* Number Badge */}
-                <div className="absolute bottom-4 right-4">
-                  <div className="w-12 h-12 rounded-full bg-[#C9A961] flex items-center justify-center text-white font-bold text-lg">
-                    {index + 1}
-                  </div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
                 {/* Title */}
-                <h3 className="text-xl font-bold text-[#151A4A] mb-3 group-hover:text-[#C9A961] transition-colors line-clamp-2 leading-tight">
+                <h3 className="text-2xl font-bold text-[#151A4A] mb-4 group-hover:text-[#C9A961] transition-colors leading-tight">
                   {post.title}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-[#4A4A4A] mb-4 line-clamp-3 text-sm leading-relaxed">
+                <p className="text-[#4A4A4A] mb-6 line-clamp-3 leading-relaxed">
                   {post.excerpt}
                 </p>
 
                 {/* Meta Info */}
-                <div className="flex items-center gap-4 text-xs text-[#4A4A4A] mb-4 pb-4 border-b border-[#E5E0D8]">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="h-3.5 w-3.5 text-[#C9A961]" />
+                <div className="flex items-center gap-4 text-sm text-[#4A4A4A] mb-6 pb-6 border-b border-[#E5E0D8]">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4 text-[#C9A961]" />
                     <span className="font-medium">{formatDate(post.publishedAt)}</span>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-[#C9A961]" />
-                    <span className="font-medium">{post.readTime} min read</span>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4 text-[#C9A961]" />
+                    <span className="font-medium">{post.readTime} min</span>
                   </div>
                 </div>
 
