@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { Menu, Bell } from "lucide-react";
-import { useSidebar } from "@/context/sidebar-context";
+import Link from "next/link";
+import Image from "next/image";
+import { Bell } from "lucide-react";
 import { UserMenu } from "./user-menu";
 
 interface AdminHeaderProps {
@@ -13,32 +14,23 @@ interface AdminHeaderProps {
 }
 
 export function AdminHeader({ user }: AdminHeaderProps) {
-  const { toggleSidebar, toggleMobileSidebar } = useSidebar();
-
   return (
     <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-gray-200 bg-white px-6">
-      {/* Left Side - Menu Toggle */}
+      {/* Left Side - Logo & Title */}
       <div className="flex items-center gap-4">
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={toggleMobileSidebar}
-          className="rounded-lg p-2 hover:bg-gray-100 lg:hidden"
-          aria-label="Toggle mobile menu"
-        >
-          <Menu className="h-6 w-6 text-gray-600" />
-        </button>
-
-        {/* Desktop Sidebar Toggle */}
-        <button
-          onClick={toggleSidebar}
-          className="hidden rounded-lg p-2 hover:bg-gray-100 lg:block"
-          aria-label="Toggle sidebar"
-        >
-          <Menu className="h-6 w-6 text-gray-600" />
-        </button>
-
-        {/* Page Title */}
-        <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
+        <Link href="/" className="flex items-center">
+          <div className="relative w-36 h-10 bg-white rounded-lg p-1.5">
+            <Image
+              src="/photopea/Untitled design-6.png"
+              alt="KC Family Home Team"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </Link>
+        <div className="h-6 w-px bg-gray-300 hidden md:block"></div>
+        <h1 className="text-xl font-semibold text-gray-900 hidden md:block">Analytics Dashboard</h1>
       </div>
 
       {/* Right Side - Actions */}
