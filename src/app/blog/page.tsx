@@ -65,7 +65,7 @@ export default function BlogPage() {
 
             {/* Subtitle */}
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 max-w-3xl mx-auto drop-shadow-2xl">
-              Expert advice on buying, selling, and finding the perfect neighborhood for your family in Kansas City
+              Expert advice on buying, selling, and finding the perfect neighborhood for your family in Kansas City and beyond
             </p>
 
             {/* Category Pills */}
