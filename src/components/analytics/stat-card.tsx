@@ -50,15 +50,15 @@ export function StatCard({
           <Tooltip.Trigger asChild>
             <div
               onClick={() => detailedData && setModalOpen(true)}
-              className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${colorGradients[color]} p-6 shadow-lg hover:shadow-2xl hover:border-2 hover:border-[#C9A961] transition-all duration-300 ${detailedData ? 'cursor-pointer' : 'cursor-default'}`}
+              className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${colorGradients[color]} p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 ${detailedData ? 'cursor-pointer' : 'cursor-default'}`}
             >
-              {/* Decorative circle */}
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors" />
+              {/* Decorative circle - simplified */}
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white/10" />
 
               {/* Content */}
               <div className="relative">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="rounded-xl bg-white/20 p-3 backdrop-blur-sm group-hover:bg-white/30 transition-colors">
+                  <div className="rounded-xl bg-white/20 p-3">
                     <div className="text-white h-6 w-6">{icon}</div>
                   </div>
                   {change !== undefined && <ComparisonBadge value={change} />}
@@ -68,7 +68,7 @@ export function StatCard({
                 <p className="text-white/70 text-xs mt-2">{changeLabel || 'Last 30 days'}</p>
 
                 {sparklineData && sparklineData.length > 0 && (
-                  <div className="mt-4 opacity-70 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-4 opacity-80">
                     <Sparkline data={sparklineData} color="#FFFFFF" height={40} />
                   </div>
                 )}
