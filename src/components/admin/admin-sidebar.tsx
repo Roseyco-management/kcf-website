@@ -28,7 +28,7 @@ const navItems: NavItem[] = [
   {
     icon: <Home className="w-5 h-5" />,
     name: "Dashboard",
-    path: "/admin/dashboard",
+    path: "/admin",
   },
   {
     icon: <FileText className="w-5 h-5" />,
