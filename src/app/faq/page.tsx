@@ -98,8 +98,30 @@ const processFaqs = [
 ];
 
 export default function FAQPage() {
+  // Combine all FAQs for schema
+  const allFaqs = [...generalFaqs, ...buyerFaqs, ...sellerFaqs, ...processFaqs];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: allFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <main>
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero Section */}
       <Hero
         badge="FAQ"

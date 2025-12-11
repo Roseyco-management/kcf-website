@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { PublicLayout } from "@/components/layout/public-layout";
+import { OrganizationSchema } from "@/components/seo/organization-schema";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -89,6 +90,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
       <body className="antialiased">
+        {/* Organization Schema */}
+        <OrganizationSchema />
+
         {/* Meta Pixel Code */}
         <Script
           id="meta-pixel"
