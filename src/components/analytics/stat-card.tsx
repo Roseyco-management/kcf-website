@@ -41,7 +41,7 @@ export function StatCard({
   color = 'navy',
 }: StatCardProps) {
   const [modalOpen, setModalOpen] = useState(false);
-  const isPositive = change > 0;
+  const isPositive = change !== undefined && change > 0;
 
   return (
     <>
@@ -110,7 +110,7 @@ export function StatCard({
                     <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
                       <p className="text-sm text-[#4A4A4A] mb-1">Change</p>
                       <p className={`text-2xl font-bold ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
-                        {isPositive ? '+' : ''}{change.toFixed(1)}%
+                        {isPositive ? '+' : ''}{change?.toFixed(1)}%
                       </p>
                     </div>
                     <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">

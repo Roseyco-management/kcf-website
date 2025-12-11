@@ -46,7 +46,9 @@ export function TopPagesList({ title, pages, emptyMessage = 'No pages found' }: 
               <p className="text-lg font-bold text-[#151A4A]">
                 {page.views.toLocaleString()}
               </p>
-              <ComparisonBadge value={page.change} size="sm" />
+              {page.change !== undefined && (
+                <ComparisonBadge value={page.change} size="sm" />
+              )}
             </div>
           </div>
         ))}
