@@ -57,25 +57,25 @@ export function PlatformCard({
     <Tooltip.Provider>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
-          <div className={`rounded-2xl bg-white p-6 shadow-sm border ${colors.border} hover:shadow-md transition-all duration-300 cursor-pointer group`}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className={`rounded-xl ${colors.icon} p-3`}>
-                <div className="h-6 w-6">{icon}</div>
+          <div className={`rounded-2xl bg-white p-4 sm:p-6 shadow-sm border ${colors.border} hover:shadow-md transition-all duration-300 cursor-pointer group`}>
+            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <div className={`rounded-xl ${colors.icon} p-2 sm:p-3 flex-shrink-0`}>
+                <div className="h-5 w-5 sm:h-6 sm:w-6">{icon}</div>
               </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-[#151A4A]">{name}</h3>
-                <p className="text-xs text-[#4A4A4A]">{id}</p>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-sm sm:text-base text-[#151A4A] truncate">{name}</h3>
+                <p className="text-[10px] sm:text-xs text-[#4A4A4A] truncate">{id}</p>
               </div>
             </div>
 
             {configured ? (
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {metrics.map((metric, index) => (
                   <div key={index}>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-[#4A4A4A]">{metric.label}</span>
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold text-[#151A4A]">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs sm:text-sm text-[#4A4A4A] truncate flex-shrink">{metric.label}</span>
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <span className="text-base sm:text-lg font-bold text-[#151A4A]">
                           {typeof metric.value === 'number'
                             ? metric.value.toLocaleString()
                             : metric.value}
@@ -86,13 +86,13 @@ export function PlatformCard({
                       </div>
                     </div>
                     {index < metrics.length - 1 && (
-                      <div className="h-px bg-[#E5E0D8] mt-4" />
+                      <div className="h-px bg-[#E5E0D8] mt-3 sm:mt-4" />
                     )}
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-[#4A4A4A]">Platform not configured</p>
+              <p className="text-xs sm:text-sm text-[#4A4A4A]">Platform not configured</p>
             )}
           </div>
         </Tooltip.Trigger>

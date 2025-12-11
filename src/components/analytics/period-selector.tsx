@@ -18,20 +18,21 @@ export function PeriodSelector() {
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-sm text-[#4A4A4A] font-medium">Time Period:</span>
+    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+      <span className="text-sm text-[#4A4A4A] font-medium hidden sm:inline">Time Period:</span>
       <div className="flex gap-1 bg-white rounded-lg p-1 border border-[#E5E0D8] shadow-sm">
         {periods.map((period) => (
           <button
             key={period.value}
             onClick={() => handlePeriodChange(period.value)}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            className={`px-2 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
               currentPeriod === period.value
                 ? 'bg-[#151A4A] text-white'
                 : 'text-[#4A4A4A] hover:bg-[#F8F6F2]'
             }`}
           >
-            {period.label}
+            <span className="hidden sm:inline">{period.label}</span>
+            <span className="sm:hidden">{period.value.toUpperCase()}</span>
           </button>
         ))}
       </div>

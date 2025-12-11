@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+# Host
+Host: https://kcfhomes.com
+
+# Sitemaps
+Sitemap: https://kcfhomes.com/sitemap.xml
+Sitemap: https://kcfhomes.com/server-sitemap.xml

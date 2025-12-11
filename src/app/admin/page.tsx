@@ -93,18 +93,18 @@ export default async function AdminDashboard({
   const periodLabel = period === '7d' ? 'Last 7 days' : period === '30d' ? 'Last 30 days' : 'Last 90 days';
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Hero KPI Section */}
       <section>
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold text-[#151A4A]">Analytics Overview</h2>
-            <p className="text-[#4A4A4A] mt-1">{periodLabel} performance metrics</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#151A4A]">Analytics Overview</h2>
+            <p className="text-sm sm:text-base text-[#4A4A4A] mt-1">{periodLabel} performance metrics</p>
           </div>
           <PeriodSelector />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <StatCard
             title="Total Visits"
             value={totalVisits.toLocaleString()}
@@ -153,12 +153,12 @@ export default async function AdminDashboard({
 
       {/* Platform Analytics Grid */}
       <section>
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-[#151A4A]">Platform Analytics</h2>
-          <p className="text-[#4A4A4A] mt-1">Real-time data from integrated platforms</p>
+        <div className="mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#151A4A]">Platform Analytics</h2>
+          <p className="text-sm sm:text-base text-[#4A4A4A] mt-1">Real-time data from integrated platforms</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           <PlatformCard
             name="Google Analytics 4"
             icon={<BarChart3 className="h-6 w-6" />}
@@ -215,7 +215,7 @@ export default async function AdminDashboard({
       </section>
 
       {/* Top Pages Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <TopPagesList
           title="Top Pages by Traffic"
           pages={topPages}
@@ -231,12 +231,12 @@ export default async function AdminDashboard({
 
       {/* Google Search Console Section */}
       <section>
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-[#151A4A]">Google Search Console</h2>
-          <p className="text-[#4A4A4A] mt-1">Organic search performance via RoseyCo Analytics - {periodLabel}</p>
+        <div className="mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#151A4A]">Google Search Console</h2>
+          <p className="text-sm sm:text-base text-[#4A4A4A] mt-1">Organic search performance via RoseyCo Analytics - {periodLabel}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <MetricBox
             title="Total Clicks"
             value={gsc ? gsc.clicks : 0}
@@ -273,12 +273,12 @@ export default async function AdminDashboard({
 
       {/* Google Ads Section */}
       <section>
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-[#151A4A]">Google Ads Performance</h2>
-          <p className="text-[#4A4A4A] mt-1">Paid search campaign metrics via RoseyCo Analytics - {periodLabel}</p>
+        <div className="mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#151A4A]">Google Ads Performance</h2>
+          <p className="text-sm sm:text-base text-[#4A4A4A] mt-1">Paid search campaign metrics via RoseyCo Analytics - {periodLabel}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <MetricBox
             title="Ad Spend"
             value={googleAds ? `$${googleAds.cost.toLocaleString()}` : '$0'}
@@ -318,9 +318,9 @@ export default async function AdminDashboard({
       </section>
 
       {/* Daily Traffic Trend */}
-      <section className="rounded-2xl bg-white p-6 shadow-sm border border-[#E5E0D8]">
-        <h3 className="text-xl font-semibold text-[#151A4A] mb-6">Daily Traffic Trend</h3>
-        <div className="h-[400px]">
+      <section className="rounded-2xl bg-white p-4 sm:p-6 shadow-sm border border-[#E5E0D8]">
+        <h3 className="text-lg sm:text-xl font-semibold text-[#151A4A] mb-4 sm:mb-6">Daily Traffic Trend</h3>
+        <div className="h-[250px] sm:h-[350px] lg:h-[400px]">
           <LineChart
             data={generateDailyTrendData(totalVisits, totalLeads)}
             lines={[

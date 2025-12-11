@@ -64,7 +64,7 @@ export function StatCard({
                   {change !== undefined && <ComparisonBadge value={change} />}
                 </div>
                 <p className="text-white/90 text-sm font-medium mb-1">{title}</p>
-                <p className="text-4xl font-bold text-white">{value}</p>
+                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white break-all">{value}</p>
                 <p className="text-white/70 text-xs mt-2">{changeLabel || 'Last 30 days'}</p>
 
                 {sparklineData && sparklineData.length > 0 && (
@@ -92,8 +92,8 @@ export function StatCard({
         <Dialog.Root open={modalOpen} onOpenChange={setModalOpen}>
           <Dialog.Portal>
             <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 z-50" />
-            <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-w-4xl w-[90vw] translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-2xl">
-              <Dialog.Title className="flex items-center gap-3 text-2xl font-bold text-[#151A4A]">
+            <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-w-4xl w-[95vw] sm:w-[90vw] max-h-[90vh] overflow-y-auto translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-4 sm:p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-2xl">
+              <Dialog.Title className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-[#151A4A]">
                 <div className="rounded-xl bg-[#151A4A]/10 p-2">
                   {icon}
                 </div>
@@ -102,14 +102,14 @@ export function StatCard({
 
               <div className="space-y-6 mt-4">
                 {change !== undefined ? (
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
                       <p className="text-sm text-[#4A4A4A] mb-1">Current</p>
-                      <p className="text-2xl font-bold text-[#151A4A]">{value}</p>
+                      <p className="text-xl sm:text-2xl font-bold text-[#151A4A] break-all">{value}</p>
                     </div>
                     <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
                       <p className="text-sm text-[#4A4A4A] mb-1">Change</p>
-                      <p className={`text-2xl font-bold ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                      <p className={`text-xl sm:text-2xl font-bold ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
                         {isPositive ? '+' : ''}{change?.toFixed(1)}%
                       </p>
                     </div>
@@ -123,7 +123,7 @@ export function StatCard({
                 ) : (
                   <div className="text-center p-4 rounded-lg bg-[#F8F6F2]">
                     <p className="text-sm text-[#4A4A4A] mb-1">Current Value</p>
-                    <p className="text-3xl font-bold text-[#151A4A]">{value}</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-[#151A4A] break-all">{value}</p>
                   </div>
                 )}
 

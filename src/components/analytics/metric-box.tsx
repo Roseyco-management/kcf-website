@@ -53,12 +53,12 @@ export function MetricBox({ title, value, change, color, icon, tooltip }: Metric
     <Tooltip.Provider>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
-          <div className={`text-center p-6 rounded-xl bg-gradient-to-br ${colorClasses[color]} border hover:shadow-md transition-all duration-300 cursor-pointer group`}>
-            <div className="flex items-center justify-center mb-3">
-              <div className={`${iconColors[color]} h-6 w-6`}>{icon}</div>
+          <div className={`text-center p-4 sm:p-6 rounded-xl bg-gradient-to-br ${colorClasses[color]} border hover:shadow-md transition-all duration-300 cursor-pointer group`}>
+            <div className="flex items-center justify-center mb-2 sm:mb-3">
+              <div className={`${iconColors[color]} h-5 w-5 sm:h-6 sm:w-6`}>{icon}</div>
             </div>
-            <p className={`text-sm ${labelColors[color]} font-medium mb-2`}>{title}</p>
-            <p className={`text-3xl font-bold ${textColors[color]}`}>
+            <p className={`text-xs sm:text-sm ${labelColors[color]} font-medium mb-2`}>{title}</p>
+            <p className={`text-2xl sm:text-3xl font-bold ${textColors[color]} break-all`}>
               {typeof value === 'number' ? value.toLocaleString() : value}
             </p>
             {change !== undefined && (
