@@ -12,7 +12,7 @@ export function HomepageSchema() {
           description:
             'Kansas City real estate agents specializing in helping families buy, sell, and upsize their homes. Expert local knowledge of family-friendly neighborhoods and top schools.',
           url: 'https://www.kcfhomes.com',
-          telephone: '+1-816-575-7763',
+          telephone: '+1-816-616-3072',
           email: 'info@kcfhomes.com',
           address: {
             '@type': 'PostalAddress',
@@ -153,7 +153,7 @@ export function HomepageSchema() {
           ],
           contactPoint: {
             '@type': 'ContactPoint',
-            telephone: '+1-816-575-7763',
+            telephone: '+1-816-616-3072',
             contactType: 'customer service',
             areaServed: 'US',
             availableLanguage: ['en'],

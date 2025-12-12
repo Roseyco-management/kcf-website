@@ -237,7 +237,7 @@ export default function LevelUpPage() {
                 <Phone className="w-8 h-8 text-accent mb-3" />
                 <h4 className="font-semibold text-accent mb-2">PHONE NUMBER</h4>
                 <a
-                  href="tel:+18165757763"
+                  href="tel:+18166163072"
                   className="text-white hover:text-accent transition-colors"
                 >
                   +1 (816) 575 7763

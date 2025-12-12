@@ -23,7 +23,7 @@ export function NeighborhoodSchema({ neighborhood }: Props) {
       addressRegion: 'MO',
       addressCountry: 'US',
     },
-    telephone: '+1-816-555-1234',
+    telephone: '+1-816-616-3072',
     priceRange: '$$',
     knowsAbout: [
       `${neighborhood.name} real estate`,

@@ -124,7 +124,7 @@ export async function POST(request: Request) {
                 <div class="contact-box">
                   <h3>Need to Reach Us Sooner?</h3>
                   <p style="margin: 10px 0;">Email: <a href="mailto:admin@kcfhomes.com" style="color: #C9A961;">admin@kcfhomes.com</a></p>
-                  <p style="margin: 10px 0;">Phone: <a href="tel:+18165757763" style="color: #C9A961;">(816) 575-7763</a></p>
+                  <p style="margin: 10px 0;">Phone: <a href="tel:+18166163072" style="color: #C9A961;">(816) 616-3072</a></p>
                   <p style="margin-top: 20px;">
                     <a href="https://kcfhomes.com" class="button" style="color: #151A4A;">Visit Our Website</a>
                   </p>

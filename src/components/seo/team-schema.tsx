@@ -11,7 +11,7 @@ export function TeamSchema() {
       description:
         'Licensed in Kansas and Missouri since 2010, Ernesto has represented hundreds of buyers and sellers with strong negotiation skills and attention to detail. Expert in Kansas City real estate, market analysis, and personalized service for families.',
       email: 'ernesto@kcfhomes.com',
-      telephone: '+1-816-575-7763',
+      telephone: '+1-816-616-3072',
       url: 'https://www.kcfhomes.com/agents',
       image: 'https://www.kcfhomes.com/agents/Ernesto Rooftop Shot.jpg',
       worksFor: {
@@ -61,7 +61,7 @@ export function TeamSchema() {
       description:
         'Licensed in Kansas and Missouri, Monica helps buyers, first-time homeowners, and investors navigate real estate with confidence. Expert in down payment assistance programs, investment properties, and making homebuying stress-free for Kansas City families.',
       email: 'monica@kcfhomes.com',
-      telephone: '+1-816-575-7763',
+      telephone: '+1-816-616-3072',
       url: 'https://www.kcfhomes.com/agents',
       image: 'https://www.kcfhomes.com/agents/Monica Rooftop Shot.jpg',
       worksFor: {
@@ -99,7 +99,7 @@ export function TeamSchema() {
       description:
         'Transaction coordinator and property manager with years of experience managing contract documents, deadlines, and communication among all parties. Expert in coordinating smooth closings and providing quality service for Kansas City families.',
       email: 'chris@kcfhomes.com',
-      telephone: '+1-816-575-7763',
+      telephone: '+1-816-616-3072',
       url: 'https://www.kcfhomes.com/agents',
       image: 'https://www.kcfhomes.com/agents/Chris Rooftop Shot.jpg',
       worksFor: {
@@ -135,7 +135,7 @@ export function TeamSchema() {
       description:
         'Real estate specialist helping Kansas City families achieve their real estate goals with expertise and dedication.',
       email: 'sandy@kcfhomes.com',
-      telephone: '+1-816-575-7763',
+      telephone: '+1-816-616-3072',
       url: 'https://www.kcfhomes.com/agents',
       image: 'https://www.kcfhomes.com/agents/Sandy Rooftop Shot.jpg',
       worksFor: {

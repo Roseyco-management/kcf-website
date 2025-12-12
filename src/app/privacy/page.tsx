@@ -80,7 +80,7 @@ export default function PrivacyPage() {
             </p>
             <ul>
               <li>Email: admin@kcfhomes.com</li>
-              <li>Phone: (816) 575-7763</li>
+              <li>Phone: (816) 616-3072</li>
               <li>Address: Kansas City, MO</li>
             </ul>
           </div>

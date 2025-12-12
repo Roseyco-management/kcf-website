@@ -433,10 +433,10 @@ export default async function ServicePage({ params }: Props) {
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
-              href="tel:+18165757763"
+              href="tel:+18166163072"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#151A4A] font-bold rounded-xl hover:bg-white/90 hover:scale-105 transition-all shadow-xl"
             >
-              Call (816) 575-7763
+              Call (816) 616-3072
             </Link>
           </div>
         </div>

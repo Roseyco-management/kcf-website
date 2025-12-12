@@ -32,7 +32,7 @@ const teamMembers = [
     role: "Senior Consultant",
     image: "/agents/Ernesto Rooftop Shot.jpg",
     bio: "Licensed in KS and MO since 2010, Ernesto started as a wholesaler, then property manager until going full time as an agent in 2014. He's represented hundreds of buyers and sellers with great attention to detail and strong negotiation skills.",
-    phone: "+1 (816) 575-7763",
+    phone: "+1 (816) 616-3072",
     email: "ernesto@kcfhomes.com",
   },
   {
@@ -40,7 +40,7 @@ const teamMembers = [
     role: "Homeowner Specialist",
     image: "/agents/Monica Rooftop Shot.jpg",
     bio: "Licensed in Kansas and Missouri, Monica helps buyers, first-time homeowners, and investors navigate the real estate process with confidence. Her goal is to make homebuying clear, stress-free, and enjoyable.",
-    phone: "+1 (816) 575-7763",
+    phone: "+1 (816) 616-3072",
     email: "monica@kcfhomes.com",
   },
   {
@@ -48,7 +48,7 @@ const teamMembers = [
     role: "Transaction Coordinator and Property Manager",
     image: "/agents/Chris Rooftop Shot.jpg",
     bio: "With years of experience managing contract documents, deadlines, and communication among all parties, Chris ensures smooth, successful transactions. A proud father of two with a background in education.",
-    phone: "+1 (816) 575-7763",
+    phone: "+1 (816) 616-3072",
     email: "chris@kcfhomes.com",
   },
   {
@@ -56,7 +56,7 @@ const teamMembers = [
     role: "Real Estate Specialist",
     image: "/agents/Sandy Rooftop Shot.jpg",
     bio: "Sandy brings expertise and dedication to helping Kansas City families achieve their real estate goals.",
-    phone: "+1 (816) 575-7763",
+    phone: "+1 (816) 616-3072",
     email: "sandy@kcfhomes.com",
   },
 ];

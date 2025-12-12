@@ -192,10 +192,10 @@ export default function FAQPage() {
               Contact Us
             </a>
             <a
-              href="tel:+18165757763"
+              href="tel:+18166163072"
               className="inline-flex items-center justify-center px-8 py-3 border border-primary text-primary font-semibold rounded-full hover:bg-primary/5 transition-colors"
             >
-              Call (816) 575-7763
+              Call (816) 616-3072
             </a>
           </div>
         </div>
