@@ -19,7 +19,7 @@ const mainPages = [
 const socialLinks = [
   { href: "https://facebook.com", icon: Facebook, label: "Facebook" },
   { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
+  { href: "https://www.instagram.com/kcfamilyhometeam/", icon: Instagram, label: "Instagram" },
 ];
 
 export function Footer() {

@@ -33,13 +33,13 @@ export const soldProperties: SoldProperty[] = [
     neighborhoodSlug: "independence",
   },
   {
-    address: "610 SW Cross Creek",
-    image: "/houses-sold/610 SW Cross Creek.jpeg",
-    neighborhoodSlug: "lees-summit",
-  },
-  {
     address: "6500 N Jarboe St",
     image: "/houses-sold/6500 N Jarboe St.jpeg",
     neighborhoodSlug: "liberty",
+  },
+  {
+    address: "610 SW Cross Creek",
+    image: "/houses-sold/610 SW Cross Creek.jpeg",
+    neighborhoodSlug: "lees-summit",
   },
 ];

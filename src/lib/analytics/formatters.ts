@@ -42,7 +42,7 @@ export function formatPercentage(num: number, decimals: number = 1): string {
  */
 export function formatDuration(seconds: number): string {
   const minutes = Math.floor(seconds / 60);
-  const secs = seconds % 60;
+  const secs = Math.round(seconds % 60);
   return `${minutes}m ${secs}s`;
 }
 

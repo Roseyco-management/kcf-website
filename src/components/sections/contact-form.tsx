@@ -39,8 +39,18 @@ export function ContactForm({ onSubmit, variant = "default" }: ContactFormProps)
       if (onSubmit) {
         await onSubmit(formData);
       } else {
-        // Default behavior - can be connected to n8n later
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        // Default behavior - send to API
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to submit form");
+        }
       }
       setIsSubmitted(true);
     } catch {

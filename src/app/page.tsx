@@ -10,16 +10,14 @@ import { FAQSection } from "@/components/sections/faq-section";
 import { CTASection } from "@/components/sections/cta-section";
 import { HomepageSchema } from "@/components/seo/homepage-schema";
 import { RecentSales } from "@/components/sections/recent-sales";
-import { neighborhoods } from "@/data/neighborhoods";
 import { googleReviews } from "@/data/reviews";
-import { MapPin, ArrowRight } from "lucide-react";
 
 // Stats Data
 const stats = [
-  { value: "500+", label: "Families Served" },
-  { value: "98%", label: "Client Satisfaction" },
+  { value: "99%", label: "Client Satisfaction" },
   { value: "15+", label: "Years Experience" },
-  { value: "$50M+", label: "In Home Sales" },
+  { value: "100%", label: "Money Back Guarantee" },
+  { value: "4", label: "Team Members" },
 ];
 
 // Process Steps Data
@@ -127,7 +125,7 @@ export default function HomePage() {
         title="Empowering Growing Families with personalized, stress-free home-buying."
         highlightedWord="Empowering Growing Families"
         subtitle="Trust our expertise and commitment to your family's journey"
-        primaryCTA={{ text: "What's in it for you?", href: "/how-it-works" }}
+        primaryCTA={{ text: "What's in it for you?", href: "/level-up" }}
         secondaryCTA={{ text: "Talk to an agent", href: "/contact" }}
         backgroundImage="/properties/KC Home Image 1.jpg"
         centered={true}
@@ -153,8 +151,8 @@ export default function HomePage() {
             <div className="space-y-6">
               <IconFeatureListItem
                 iconName="checkCircle"
-                title="Over 500 Families Served"
-                description="We've helped hundreds of families find their perfect homes across the Kansas City metro."
+                title="Dedicated to Kansas City Families"
+                description="We help families find their perfect homes across the Kansas City metro with personalized service."
                 index={0}
               />
               <IconFeatureListItem
@@ -174,7 +172,7 @@ export default function HomePage() {
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden relative">
               <Image
-                src="/properties/KC Home Image 2.jpg"
+                src="/houses-sold/19625 E 18th St Ter.jpeg"
                 alt="Beautiful Kansas City Home"
                 fill
                 className="object-cover"
@@ -248,51 +246,6 @@ export default function HomePage() {
 
       {/* Testimonials Section - Full-width premium layout */}
       <TestimonialsSection testimonials={testimonials} />
-
-      {/* Neighborhoods Section */}
-      <SectionWrapper background="cream" id="neighborhoods">
-        <SectionHeader
-          badge="Neighborhoods"
-          title="Explore Kansas City's Best Family Neighborhoods"
-          highlightedWord="Family Neighborhoods"
-          description="From top-rated schools to walkable communities, discover the perfect neighborhood for your family."
-        />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {neighborhoods.slice(0, 3).map((neighborhood) => (
-            <Link
-              key={neighborhood.slug}
-              href={`/neighborhoods/${neighborhood.slug}`}
-              className="group bg-white rounded-xl p-6 border border-[#E5E0D8] hover:shadow-lg transition-all"
-            >
-              <div className="flex items-start gap-3 mb-4">
-                <MapPin className="h-6 w-6 text-[#C9A961] flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold text-[#151A4A] mb-1 group-hover:text-[#C9A961] transition-colors">
-                    {neighborhood.name}
-                  </h3>
-                  <p className="text-sm text-[#4A4A4A]">{neighborhood.tagline}</p>
-                </div>
-              </div>
-              <p className="text-[#4A4A4A] text-sm mb-4 line-clamp-2">
-                {neighborhood.description}
-              </p>
-              <div className="flex items-center gap-2 text-[#C9A961] font-semibold text-sm">
-                Explore {neighborhood.name}
-                <ArrowRight className="h-4 w-4" />
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="text-center">
-          <Link
-            href="/neighborhoods"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#151A4A] text-white font-semibold rounded-lg hover:bg-[#C9A961] transition-colors"
-          >
-            View All Neighborhoods
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </div>
-      </SectionWrapper>
 
       {/* FAQ Section */}
       <SectionWrapper background="white" id="faq">

@@ -17,108 +17,66 @@ export default function PrivacyPage() {
           </p>
 
           <div className="prose prose-lg max-w-none">
-            <h2>Introduction</h2>
-            <p>
-              KC Family Home Team (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy and is
-              committed to protecting your personal information. This Privacy Policy explains
-              how we collect, use, disclose, and safeguard your information when you visit
-              our website or use our services.
-            </p>
-
             <h2>Information We Collect</h2>
-            <h3>Personal Information</h3>
-            <p>We may collect personal information that you voluntarily provide to us, including:</p>
-            <ul>
-              <li>Name and contact information (email address, phone number, mailing address)</li>
-              <li>Property information related to buying or selling</li>
-              <li>Financial information necessary for real estate transactions</li>
-              <li>Communication preferences</li>
-              <li>Information provided through forms, questionnaires, or direct communication</li>
-            </ul>
-
-            <h3>Automatically Collected Information</h3>
             <p>
-              When you visit our website, we may automatically collect certain information, including:
+              We may collect personal information directly from you when you interact with our website. This can include:
             </p>
             <ul>
-              <li>Device information (browser type, operating system)</li>
-              <li>IP address and general location</li>
-              <li>Pages visited and time spent on our website</li>
-              <li>Referring website or source</li>
+              <li><strong>Contact Information:</strong> Name, email address, phone number, and mailing address.</li>
+              <li><strong>Property Information:</strong> Details about your property search, saved listings, property inquiries, or home value requests.</li>
+              <li><strong>Communication Data:</strong> Records of any correspondence with us, such as emails, phone calls, or form submissions.</li>
+              <li><strong>Technical Data:</strong> Information collected automatically from your device, such as your IP address, browser type, operating system, and website usage data through cookies and similar technologies.</li>
             </ul>
 
             <h2>How We Use Your Information</h2>
-            <p>We use the information we collect to:</p>
+            <p>We use your information for the following purposes:</p>
             <ul>
-              <li>Provide real estate services and facilitate transactions</li>
-              <li>Communicate with you about properties, services, and updates</li>
-              <li>Respond to your inquiries and requests</li>
-              <li>Send marketing communications (with your consent)</li>
-              <li>Improve our website and services</li>
-              <li>Comply with legal obligations</li>
+              <li><strong>To Provide Services:</strong> To respond to your inquiries, schedule property viewings, process your requests for information, and provide real estate services.</li>
+              <li><strong>For Communication:</strong> To send you relevant information, including newsletters, market updates, and new listing alerts. You can opt-out of these communications at any time.</li>
+              <li><strong>To Improve Our Website:</strong> To analyze website usage and user behavior to improve the functionality and design of our website.</li>
+              <li><strong>For Legal Compliance:</strong> To comply with applicable laws and regulations, including industry standards from the Multiple Listing Service (MLS).</li>
             </ul>
 
-            <h2>Information Sharing</h2>
-            <p>We may share your information with:</p>
-            <ul>
-              <li>Service providers who assist in our operations (title companies, lenders, inspectors)</li>
-              <li>Other parties involved in your real estate transaction</li>
-              <li>United Real Estate Kansas City (our brokerage)</li>
-              <li>Legal and regulatory authorities when required by law</li>
-            </ul>
+            <h2>How We Share Your Information</h2>
             <p>
-              We do not sell your personal information to third parties for their marketing purposes.
+              Your personal information is not sold, traded, or rented to third parties for marketing purposes.
+              We may share your information with service providers assisting our business operations, such as hosting,
+              CRM, and analytics providers. Information may also be disclosed to comply with legal requirements or in
+              the event of a business transfer like a merger or acquisition.
             </p>
 
             <h2>Data Security</h2>
             <p>
-              We implement appropriate technical and organizational measures to protect your
-              personal information against unauthorized access, alteration, disclosure, or
-              destruction. However, no method of transmission over the Internet is 100%
-              secure, and we cannot guarantee absolute security.
+              We employ security measures to protect your personal information, but no online transmission or
+              storage is completely secure.
             </p>
 
-            <h2>Your Rights</h2>
-            <p>You have the right to:</p>
-            <ul>
-              <li>Access the personal information we hold about you</li>
-              <li>Request correction of inaccurate information</li>
-              <li>Request deletion of your information (subject to legal requirements)</li>
-              <li>Opt out of marketing communications</li>
-              <li>Withdraw consent where processing is based on consent</li>
-            </ul>
-
-            <h2>Cookies and Tracking</h2>
+            <h2>Your Choices and Rights</h2>
             <p>
-              Our website may use cookies and similar tracking technologies to enhance your
-              experience. You can control cookies through your browser settings. Disabling
-              cookies may affect the functionality of our website.
-            </p>
-
-            <h2>Third-Party Links</h2>
-            <p>
-              Our website may contain links to third-party websites. We are not responsible
-              for the privacy practices of these websites. We encourage you to review their
-              privacy policies.
+              You have rights regarding your personal data, including requesting access to or correction of your
+              information and opting out of marketing communications. You may also request data deletion, subject
+              to legal obligations.
             </p>
 
             <h2>Children&apos;s Privacy</h2>
             <p>
-              Our services are not directed to individuals under 18 years of age. We do not
-              knowingly collect personal information from children.
+              Our services are not intended for individuals under 18. We do not knowingly collect data from children.
             </p>
 
-            <h2>Changes to This Policy</h2>
+            <h2>Third-Party Links</h2>
             <p>
-              We may update this Privacy Policy from time to time. We will notify you of
-              any material changes by posting the new policy on this page and updating the
-              &quot;Last updated&quot; date.
+              Our website may contain links to third-party sites, but this policy does not apply to them.
+            </p>
+
+            <h2>Updates to this Policy</h2>
+            <p>
+              This policy may be updated, with changes posted here and the &quot;Effective Date&quot; revised.
+              Continued use means you accept the updates.
             </p>
 
             <h2>Contact Us</h2>
             <p>
-              If you have questions about this Privacy Policy or our privacy practices,
-              please contact us at:
+              For questions, contact KC Family Home Team via:
             </p>
             <ul>
               <li>Email: admin@kcfhomes.com</li>

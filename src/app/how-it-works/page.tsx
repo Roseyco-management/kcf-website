@@ -272,6 +272,34 @@ export default function HowItWorksPage() {
         </div>
       </SectionWrapper>
 
+      {/* Service Satisfaction Promise */}
+      <SectionWrapper background="white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">
+            SERVICE SATISFACTION PROMISE
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12">
+            To ensure guarantee: If we don't meet the agreed upon standards we can offer a
+            refund of certain fees and provide additional support to make things right, and if
+            you're not satisfied with your home within the first 6 months of purchase we will
+            sell your home for free.
+          </p>
+
+          {/* Money Back Guarantee Badge */}
+          <div className="inline-flex flex-col items-center">
+            <div className="relative w-64 h-64 rounded-full border-[6px] border-primary flex flex-col items-center justify-center bg-white shadow-2xl">
+              {/* Badge content */}
+              <div className="text-center">
+                <div className="text-6xl font-black text-primary mb-3">100%</div>
+                <div className="text-2xl font-black text-primary tracking-tight mb-1">Money Back</div>
+                <div className="text-xl font-bold text-primary tracking-wide mb-3">Guarantee</div>
+                <div className="text-3xl text-primary">★★★★★</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
       {/* CTA Section */}
       <CTASection
         badge="Questions?"

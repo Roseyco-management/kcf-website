@@ -149,7 +149,7 @@ export function HomepageSchema() {
           logo: 'https://www.kcfhomes.com/logo.png',
           sameAs: [
             'https://www.facebook.com/kcfamilyhomes',
-            'https://www.instagram.com/kcfamilyhomes',
+            'https://www.instagram.com/kcfamilyhometeam/',
           ],
           contactPoint: {
             '@type': 'ContactPoint',

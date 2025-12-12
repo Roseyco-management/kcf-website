@@ -75,7 +75,7 @@ export function OrganizationSchema() {
         email: 'admin@kcfhomes.com',
         sameAs: [
           'https://www.facebook.com/kcfamilyhomes',
-          'https://www.instagram.com/kcfamilyhomes',
+          'https://www.instagram.com/kcfamilyhometeam/',
         ],
         priceRange: '$$',
         knowsAbout: [
@@ -104,21 +104,21 @@ export function OrganizationSchema() {
           {
             '@type': 'Person',
             name: 'Monica Hammer',
-            jobTitle: 'Homeowner Specialist',
+            jobTitle: 'Real Estate Consultant',
             email: 'monica@kcfhomes.com',
             telephone: '+1-816-575-7763',
           },
           {
             '@type': 'Person',
             name: 'Chris Schinzel',
-            jobTitle: 'Transaction Coordinator and Property Manager',
+            jobTitle: 'Real Estate Consultant',
             email: 'chris@kcfhomes.com',
             telephone: '+1-816-575-7763',
           },
           {
             '@type': 'Person',
             name: 'Sandy',
-            jobTitle: 'Real Estate Specialist',
+            jobTitle: 'Real Estate Consultant',
             email: 'sandy@kcfhomes.com',
             telephone: '+1-816-575-7763',
           },
@@ -127,7 +127,7 @@ export function OrganizationSchema() {
           '@type': 'QuantitativeValue',
           value: 4,
         },
-        foundingDate: '2010',
+        foundingDate: '2022',
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: 'Real Estate Services',

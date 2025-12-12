@@ -197,20 +197,20 @@ export default function AboutPage() {
           />
           <div className="prose prose-lg mx-auto text-muted-foreground">
             <p className="text-lg leading-relaxed mb-6">
-              After years working in traditional real estate, our founder Ernesto Piekus
+              After years working in traditional real estate, our founder Ernesto Tinoco
               noticed a troubling pattern: families were being treated as just another
               transaction. The personal touch was missing, and many families felt lost
               in the process.
             </p>
             <p className="text-lg leading-relaxed mb-6">
-              In 2009, KC Family Home Team was born with a simple premise - what if we
+              KC Family Home Team was born with a simple premise - what if we
               treated every client like family? What if we built a team of specialists
               instead of trying to do everything alone? What if we measured success not
               by transactions, but by happy families?
             </p>
             <p className="text-lg leading-relaxed">
-              Today, that vision has helped over 500 families find their perfect homes.
-              But we&apos;re just getting started. Every day, we wake up with the same passion
+              Today, that vision continues to guide everything we do.
+              Every day, we wake up with the same passion
               and dedication to serve Kansas City families with the care they deserve.
             </p>
           </div>
