@@ -89,11 +89,6 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  // Google Search Console Verification
-  // TODO: Add verification code from Google Search Console
-  // verification: {
-  //   google: 'YOUR_VERIFICATION_CODE_HERE',
-  // },
 };
 
 export default function RootLayout({
