@@ -2,22 +2,7 @@
 
 import { SectionWrapper } from "@/components/sections/section-wrapper";
 import { Mail, Phone, MapPin, Loader2, CheckCircle } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
-
-// Declare Turnstile on window object
-declare global {
-  interface Window {
-    turnstile?: {
-      render: (container: string | HTMLElement, options: {
-        sitekey: string;
-        callback: (token: string) => void;
-        theme?: string;
-      }) => string;
-      reset: (widgetId: string) => void;
-      remove: (widgetId: string) => void;
-    };
-  }
-}
+import { useState } from "react";
 
 export default function LevelUpPage() {
   const [formData, setFormData] = useState({
@@ -31,59 +16,11 @@ export default function LevelUpPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [turnstileToken, setTurnstileToken] = useState<string>("");
-  const turnstileRef = useRef<HTMLDivElement>(null);
-  const widgetIdRef = useRef<string | null>(null);
-
-  // Initialize Turnstile
-  useEffect(() => {
-    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-    if (!siteKey) return;
-
-    const loadTurnstile = () => {
-      if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
-        widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
-          sitekey: siteKey,
-          callback: (token: string) => {
-            setTurnstileToken(token);
-          },
-          theme: "light",
-        });
-      }
-    };
-
-    // Check if script is already loaded
-    if (window.turnstile) {
-      loadTurnstile();
-    } else {
-      // Load the Turnstile script
-      const script = document.createElement("script");
-      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-      script.async = true;
-      script.defer = true;
-      script.onload = loadTurnstile;
-      document.head.appendChild(script);
-    }
-
-    return () => {
-      if (widgetIdRef.current && window.turnstile) {
-        window.turnstile.remove(widgetIdRef.current);
-        widgetIdRef.current = null;
-      }
-    };
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
-
-    // Check if Turnstile token is present
-    if (!turnstileToken) {
-      setError("Please complete the security verification.");
-      setIsSubmitting(false);
-      return;
-    }
 
     try {
       const response = await fetch("/api/level-up", {
@@ -91,10 +28,7 @@ export default function LevelUpPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...formData,
-          turnstileToken,
-        }),
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
@@ -106,11 +40,6 @@ export default function LevelUpPage() {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again or contact us directly.");
       console.error("Form submission error:", err);
-      // Reset Turnstile on error
-      if (widgetIdRef.current && window.turnstile) {
-        window.turnstile.reset(widgetIdRef.current);
-        setTurnstileToken("");
-      }
     } finally {
       setIsSubmitting(false);
     }
@@ -262,11 +191,6 @@ export default function LevelUpPage() {
                     placeholder="+123 456 789 00"
                   />
                 </div>
-              </div>
-
-              {/* Turnstile */}
-              <div className="flex justify-center pt-4">
-                <div ref={turnstileRef} />
               </div>
 
               {/* Error Message */}
