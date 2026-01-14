@@ -1,11 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle, Loader2 } from "lucide-react";
+
+// Declare Turnstile on window object
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (container: string | HTMLElement, options: {
+        sitekey: string;
+        callback: (token: string) => void;
+        theme?: string;
+      }) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+  }
+}
 
 interface ContactFormProps {
   onSubmit?: (data: FormData) => Promise<void>;
@@ -29,11 +44,59 @@ export function ContactForm({ onSubmit, variant = "default" }: ContactFormProps)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  // Initialize Turnstile
+  useEffect(() => {
+    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+    if (!siteKey) return;
+
+    const loadTurnstile = () => {
+      if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
+        widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+          sitekey: siteKey,
+          callback: (token: string) => {
+            setTurnstileToken(token);
+          },
+          theme: "light",
+        });
+      }
+    };
+
+    // Check if script is already loaded
+    if (window.turnstile) {
+      loadTurnstile();
+    } else {
+      // Load the Turnstile script
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      script.defer = true;
+      script.onload = loadTurnstile;
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+      }
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
+
+    // Check if Turnstile token is present
+    if (!turnstileToken) {
+      setError("Please complete the security verification.");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       if (onSubmit) {
@@ -45,16 +108,25 @@ export function ContactForm({ onSubmit, variant = "default" }: ContactFormProps)
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            ...formData,
+            turnstileToken,
+          }),
         });
 
         if (!response.ok) {
-          throw new Error("Failed to submit form");
+          const data = await response.json();
+          throw new Error(data.error || "Failed to submit form");
         }
       }
       setIsSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please try again.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      // Reset Turnstile on error
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.reset(widgetIdRef.current);
+        setTurnstileToken("");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -169,6 +241,9 @@ export function ContactForm({ onSubmit, variant = "default" }: ContactFormProps)
             className="rounded-xl border-gray-200 focus:border-accent focus:ring-accent/20 bg-white resize-none"
           />
         </div>
+
+        {/* Turnstile */}
+        <div ref={turnstileRef} className="flex justify-center" />
 
         {/* Error Message */}
         {error && (
