@@ -6,7 +6,12 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { question1, question2, question3, email, fullName, phone } = body;
+    const { question1, question2, question3, email, fullName, phone, honeypot } = body;
+
+    // Bot check - if honeypot is filled, reject silently
+    if (honeypot) {
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
 
     // Validate required fields
     if (!question1 || !question2 || !question3 || !email) {

@@ -13,6 +13,7 @@ export default function LevelUpPage() {
     fullName: "",
     phone: "",
   });
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -22,13 +23,19 @@ export default function LevelUpPage() {
     setIsSubmitting(true);
     setError(null);
 
+    // Bot check - if honeypot is filled, it's a bot
+    if (honeypot) {
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/level-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, honeypot }),
       });
 
       if (!response.ok) {
@@ -96,6 +103,18 @@ export default function LevelUpPage() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Honeypot field - hidden from users, catches bots */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               {/* Question 1 */}
               <div>
                 <label className="block text-lg font-semibold text-primary mb-3">
