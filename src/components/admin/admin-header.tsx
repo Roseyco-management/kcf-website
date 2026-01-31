@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { UserMenu } from "./user-menu";
 
 interface AdminHeaderProps {
@@ -13,6 +14,8 @@ interface AdminHeaderProps {
 }
 
 export function AdminHeader({ user }: AdminHeaderProps) {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-[#E5E0D8] bg-white px-6 shadow-sm">
       {/* Left Side - Logo & Title */}
@@ -29,6 +32,26 @@ export function AdminHeader({ user }: AdminHeaderProps) {
           </div>
         </Link>
       </div>
+
+      {/* Center - Navigation */}
+      <nav className="flex items-center gap-6">
+        <Link
+          href="/admin"
+          className={`text-sm font-medium transition-colors hover:text-[#C9A961] ${
+            pathname === '/admin' ? 'text-[#151A4A]' : 'text-[#4A4A4A]'
+          }`}
+        >
+          Dashboard
+        </Link>
+        <Link
+          href="/admin/blog"
+          className={`text-sm font-medium transition-colors hover:text-[#C9A961] ${
+            pathname?.startsWith('/admin/blog') ? 'text-[#151A4A]' : 'text-[#4A4A4A]'
+          }`}
+        >
+          Blog
+        </Link>
+      </nav>
 
       {/* Right Side - Actions */}
       <div className="flex items-center gap-4">
