@@ -49,16 +49,16 @@ Plans:
 - [ ] 1-schema-PLAN.md - Database schema design & creation (4 tasks)
 
 ### Phase 2: Data Migration
-**Goal**: Migrate all 100+ blog posts from `src/data/blog-posts.ts` to Supabase with data validation and integrity checks
+**Goal**: Migrate all blog posts from `src/data/blog-posts.ts` to Supabase with data validation and integrity checks
 
 **Depends on**: Phase 1
 
-**Research**: Unlikely (straightforward data transformation and insertion)
+**Research**: ✓ None needed (straightforward data transformation and insertion)
 
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] TBD during phase planning
+- [ ] 1-migration-PLAN.md - Migrate 3 blog posts from TypeScript to Supabase (4 tasks)
 
 ### Phase 3: Dynamic Blog Rendering
 **Goal**: Update `/blog/[slug]` and `/blog` pages to fetch from Supabase instead of static data, maintaining all URLs and SEO metadata
@@ -193,7 +193,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Database Schema | 1/1 | ✅ Complete | 2026-01-31 |
-| 2. Data Migration | 0/TBD | Not started | - |
+| 2. Data Migration | 0/1 | Planned | - |
 | 3. Dynamic Blog Rendering | 0/TBD | Not started | - |
 | 4. CMS Foundation | 0/TBD | Not started | - |
 | 5. Blog List Management | 0/TBD | Not started | - |
