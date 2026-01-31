@@ -70,7 +70,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md - Blog listing & detail pages (2 tasks)
+- [x] 03-01-PLAN.md - Blog listing & detail pages (2 tasks) - Completed 2026-01-31
 - [ ] 03-02-PLAN.md - Sitemap & SEO verification (2 tasks)
 
 ### Phase 4: CMS Foundation
