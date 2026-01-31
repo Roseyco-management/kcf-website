@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
 import { getAllNeighborhoodSlugs } from '@/data/neighborhoods';
-import { getAllBlogSlugs } from '@/data/blog-posts';
 import { getAllServiceSlugs } from '@/data/services';
+import { createClient } from '@supabase/supabase-js';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.kcfhomes.com';
 
   // Static pages
@@ -66,14 +66,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   };
 
-  // Dynamic blog posts
-  const blogSlugs = getAllBlogSlugs();
-  const blogPages = blogSlugs.map((slug) => ({
-    url: `${baseUrl}/blog/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
+  // Dynamic blog posts - fetch from Supabase
+  let blogPages: MetadataRoute.Sitemap = [];
+  try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      { auth: { persistSession: false } }
+    );
+
+    const { data: posts, error } = await supabase
+      .from('blog_posts')
+      .select('slug, updated_at, published_at');
+
+    if (!error && posts) {
+      blogPages = posts.map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: post.updated_at || post.published_at,
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+      }));
+    }
+  } catch (error) {
+    // Gracefully handle errors - return empty array for blog posts
+    console.error('Error fetching blog posts for sitemap:', error);
+  }
 
   // Neighborhoods index page
   const neighborhoodsIndex = {
