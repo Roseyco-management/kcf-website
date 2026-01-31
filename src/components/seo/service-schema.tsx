@@ -17,7 +17,7 @@ export function ServiceSchema({ service }: Props) {
       '@id': 'https://www.kcfhomes.com/#organization',
       name: 'KC Family Home Team',
       url: 'https://www.kcfhomes.com',
-      telephone: '+1-816-616-3072',
+      telephone: '+1-816-605-6595',
       email: 'admin@kcfhomes.com',
       address: {
         '@type': 'PostalAddress',

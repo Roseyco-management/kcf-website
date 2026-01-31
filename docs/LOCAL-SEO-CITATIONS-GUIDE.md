@@ -18,7 +18,7 @@ Local citations and Google Business Profile (GBP) optimization are critical for 
 #### 1. Business Information
 - [x] Business name: KC Family Home Team
 - [ ] **Verify Address**: Ensure complete and accurate
-- [ ] **Phone**: +1-816-575-7763 (verify this is correct)
+- [ ] **Phone**: +1-816-605-6595 (verify this is correct)
 - [ ] **Website**: https://www.kcfhomes.com
 - [ ] **Hours**: Update if applicable
 
@@ -42,7 +42,7 @@ We provide comprehensive real estate services including home buying assistance, 
 
 Serving: Kansas City MO, Overland Park KS, Lee's Summit MO, Blue Springs MO, Independence MO, Olathe KS, Leawood KS, and all Johnson County & Jackson County communities.
 
-Contact us for a free consultation: (816) 575-7763
+Contact us for a free consultation: (816) 605-6595
 ```
 
 #### 4. Services (Add these to GBP)
@@ -85,7 +85,7 @@ Beautiful 4BR/3BA family home near top-rated schools. Perfect for growing famili
 💰 $425,000
 🏫 Blue Valley Schools
 
-Contact us today: (816) 575-7763
+Contact us today: (816) 605-6595
 [Learn More Button] → Link to listing or contact page
 ```
 
@@ -129,7 +129,7 @@ Citations are online mentions of your business name, address, and phone number (
 **Use this exact format everywhere**:
 ```
 Business Name: KC Family Home Team
-Phone: (816) 575-7763
+Phone: (816) 605-6595
 Email: admin@kcfhomes.com
 Website: https://www.kcfhomes.com
 ```
@@ -257,7 +257,7 @@ Thank you so much!
 Best regards,
 [Agent Name]
 KC Family Home Team
-(816) 575-7763
+(816) 605-6595
 ```
 
 #### 2. Review Request Cards

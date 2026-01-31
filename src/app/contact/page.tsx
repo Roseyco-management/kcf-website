@@ -6,7 +6,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Kansas City Real Estate Agents | KC Family Home Team",
-  description: "Contact our Kansas City real estate experts. Free consultation for families buying or selling homes. Serving Overland Park, Lee's Summit, and all KC metro. Call (816) 616-3072.",
+  description: "Contact our Kansas City real estate experts. Free consultation for families buying or selling homes. Serving Overland Park, Lee's Summit, and all KC metro. Call (816) 605-6595.",
   keywords: [
     "contact Kansas City realtor",
     "Kansas City real estate agent",
@@ -24,8 +24,8 @@ const contactInfo = [
     icon: Phone,
     title: "Phone",
     description: "Call us directly",
-    value: "+1 (816) 616-3072",
-    href: "tel:+18166163072",
+    value: "+1 (816) 605-6595",
+    href: "tel:+18166056595",
   },
   {
     icon: Mail,

@@ -192,10 +192,10 @@ export default function FAQPage() {
               Contact Us
             </a>
             <a
-              href="tel:+18166163072"
+              href="tel:+18166056595"
               className="inline-flex items-center justify-center px-8 py-3 border border-primary text-primary font-semibold rounded-full hover:bg-primary/5 transition-colors"
             >
-              Call (816) 616-3072
+              Call (816) 605-6595
             </a>
           </div>
         </div>
