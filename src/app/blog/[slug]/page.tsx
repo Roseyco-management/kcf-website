@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getBlogPostBySlug, getAllBlogSlugs, blogPosts } from '@/data/blog-posts';
+import { createClient } from '@/lib/supabase/server';
 import { getNeighborhoodBySlug } from '@/data/neighborhoods';
 import { Calendar, Clock, User, ArrowLeft, ArrowRight } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -9,6 +9,7 @@ import { RelatedServices } from '@/components/blog/related-services';
 import { RelatedPosts } from '@/components/blog/related-posts';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { SocialShare } from '@/components/blog/social-share';
+import type { BlogPost } from '@/types/blog';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -16,16 +17,27 @@ interface Props {
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-  const slugs = getAllBlogSlugs();
-  return slugs.map((slug) => ({
-    slug,
+  const supabase = await createClient();
+  const { data: posts } = await supabase
+    .from('blog_posts')
+    .select('slug');
+
+  if (!posts) return [];
+
+  return posts.map((post) => ({
+    slug: post.slug,
   }));
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const supabase = await createClient();
+  const { data: post } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('slug', slug)
+    .single();
 
   if (!post) {
     return {
@@ -34,14 +46,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: post.metaTitle,
-    description: post.metaDescription,
+    title: post.meta_title,
+    description: post.meta_description,
     keywords: post.tags,
     openGraph: {
-      title: post.metaTitle,
-      description: post.metaDescription,
+      title: post.meta_title,
+      description: post.meta_description,
       type: 'article',
-      publishedTime: post.publishedAt,
+      publishedTime: post.published_at,
       authors: [post.author.name],
       tags: post.tags,
     },
@@ -50,11 +62,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const supabase = await createClient();
+  const { data: dbPost, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('slug', slug)
+    .single();
 
-  if (!post) {
+  if (error || !dbPost) {
     notFound();
   }
+
+  // Map database fields to camelCase for rendering
+  const post: BlogPost = {
+    slug: dbPost.slug,
+    title: dbPost.title,
+    excerpt: dbPost.excerpt,
+    content: dbPost.content,
+    category: dbPost.category,
+    author: dbPost.author,
+    publishedAt: dbPost.published_at,
+    updatedAt: dbPost.updated_at,
+    readTime: dbPost.read_time,
+    featuredImage: dbPost.featured_image,
+    featuredImageAlt: dbPost.featured_image_alt,
+    tags: dbPost.tags,
+    metaTitle: dbPost.meta_title,
+    metaDescription: dbPost.meta_description,
+    targetKeyword: dbPost.target_keyword,
+    relatedNeighborhoods: dbPost.related_neighborhoods,
+    relatedPosts: dbPost.related_posts,
+    relatedServices: dbPost.related_services,
+  };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -65,6 +104,29 @@ export default async function BlogPostPage({ params }: Props) {
   const relatedNeighborhoods = post.relatedNeighborhoods
     ?.map((slug) => getNeighborhoodBySlug(slug))
     .filter(Boolean);
+
+  // Fetch all blog posts for RelatedPosts component
+  const { data: allPostsData } = await supabase
+    .from('blog_posts')
+    .select('slug, title, excerpt, category, published_at, read_time, tags');
+
+  const allPosts: BlogPost[] = allPostsData?.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    category: p.category,
+    publishedAt: p.published_at,
+    readTime: p.read_time,
+    tags: p.tags,
+    // Fields not needed for related posts but required by type
+    content: '',
+    author: { name: 'KC Family Home Team', role: '' },
+    featuredImage: '',
+    featuredImageAlt: '',
+    metaTitle: '',
+    metaDescription: '',
+    targetKeyword: '',
+  })) || [];
 
   return (
     <div className="min-h-screen bg-[#F8F6F2]">
@@ -261,7 +323,7 @@ export default async function BlogPostPage({ params }: Props) {
       )}
 
       {/* Related Blog Posts */}
-      <RelatedPosts currentPost={post} allPosts={blogPosts} />
+      <RelatedPosts currentPost={post} allPosts={allPosts} />
 
       {/* CTA Section */}
       <div className="bg-gradient-to-br from-[#151A4A] to-[#0F1238] py-16">
