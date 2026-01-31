@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { blogPosts } from '@/data/blog-posts';
+import { createClient } from '@/lib/supabase/server';
 import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
+import type { BlogPost } from '@/types/blog';
 
 export const metadata: Metadata = {
   title: 'Kansas City Real Estate Blog | Family Home Buying & Selling Tips',
@@ -22,11 +23,44 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  // Sort by published date, newest first
-  const sortedPosts = [...blogPosts].sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
+export default async function BlogPage() {
+  // Fetch blog posts from Supabase
+  const supabase = await createClient();
+  const { data: posts, error } = await supabase
+    .from('blog_posts')
+    .select('slug, title, excerpt, category, published_at, read_time, featured_image, featured_image_alt, tags')
+    .order('published_at', { ascending: false });
+
+  // Handle error state
+  if (error || !posts) {
+    return (
+      <div className="min-h-screen bg-[#F8F6F2] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[#151A4A] mb-4">Failed to load blog posts</h1>
+          <p className="text-[#4A4A4A]">Please try again later.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Map database fields to camelCase
+  const sortedPosts: BlogPost[] = posts.map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    publishedAt: post.published_at,
+    readTime: post.read_time,
+    featuredImage: post.featured_image,
+    featuredImageAlt: post.featured_image_alt,
+    tags: post.tags,
+    // Fields not needed for listing but required by type
+    content: '',
+    author: { name: 'KC Family Home Team', role: '' },
+    metaTitle: '',
+    metaDescription: '',
+    targetKeyword: '',
+  }));
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -34,7 +68,7 @@ export default function BlogPage() {
   };
 
   // Get unique categories
-  const categories = Array.from(new Set(blogPosts.map((post) => post.category)));
+  const categories = Array.from(new Set(sortedPosts.map((post) => post.category)));
 
   return (
     <div className="min-h-screen bg-[#F8F6F2]">
