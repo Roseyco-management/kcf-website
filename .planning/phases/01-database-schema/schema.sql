@@ -139,18 +139,17 @@ ORDER BY policyname;
 -- ----------------------------------------------------------------------------
 
 -- Step 1: Set admin claim on your admin user
--- ⚠️ REPLACE 'your-admin@email.com' with your actual admin email
 UPDATE auth.users
 SET raw_user_meta_data =
   raw_user_meta_data || '{"is_admin": true}'::jsonb
-WHERE email = 'your-admin@email.com';  -- ⚠️ REPLACE THIS
+WHERE email = 'kcfadmin@kcfhomes.com';
 
 -- Verify admin claim
 SELECT
   email,
   raw_user_meta_data->>'is_admin' as is_admin
 FROM auth.users
-WHERE email = 'your-admin@email.com';  -- ⚠️ REPLACE THIS
+WHERE email = 'kcfadmin@kcfhomes.com';
 
 -- Step 2: Insert test blog post
 INSERT INTO blog_posts (
