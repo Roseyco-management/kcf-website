@@ -65,12 +65,13 @@ Plans:
 
 **Depends on**: Phase 2
 
-**Research**: Unlikely (Next.js patterns established, Supabase client exists)
+**Research**: ✓ None needed (Next.js patterns established, Supabase client exists)
 
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD during phase planning
+- [ ] 03-01-PLAN.md - Blog listing & detail pages (2 tasks)
+- [ ] 03-02-PLAN.md - Sitemap & SEO verification (2 tasks)
 
 ### Phase 4: CMS Foundation
 **Goal**: Build admin dashboard structure at `/admin/blog` with navigation, auth guards, and layout
