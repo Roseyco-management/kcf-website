@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
+import { createClient as createServiceClient } from '@supabase/supabase-js';
 import { getNeighborhoodBySlug } from '@/data/neighborhoods';
 import { Calendar, Clock, User, ArrowLeft, ArrowRight } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -17,7 +18,13 @@ interface Props {
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-  const supabase = await createClient();
+  // Use service role client for build-time operations (no cookies needed)
+  const supabase = createServiceClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { auth: { persistSession: false } }
+  );
+
   const { data: posts } = await supabase
     .from('blog_posts')
     .select('slug');
