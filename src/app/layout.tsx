@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
-import Script from "next/script";
+import { Partytown } from "@qwik.dev/partytown/react";
 import "./globals.css";
 import { PublicLayout } from "@/components/layout/public-layout";
 import { OrganizationSchema } from "@/components/seo/organization-schema";
@@ -102,25 +102,24 @@ export default function RootLayout({
         {/* Organization Schema */}
         <OrganizationSchema />
 
-        {/* Meta Pixel Code */}
-        <Script
-          id="meta-pixel"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1520686439196434');
-              fbq('track', 'PageView');
-            `,
-          }}
+        <Partytown
+          debug={process.env.NODE_ENV === 'development'}
+          forward={['dataLayer.push', 'gtag', 'fbq', 'clarity']}
         />
+
+        {/* Meta Pixel Code */}
+        <script type="text/partytown" dangerouslySetInnerHTML={{ __html: `
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '1520686439196434');
+          fbq('track', 'PageView');
+        `}} />
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -131,42 +130,24 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-        {/* End Meta Pixel Code */}
 
         {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-RH9LPW46VV"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-RH9LPW46VV');
-            `,
-          }}
-        />
-        {/* End Google Analytics */}
+        <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RH9LPW46VV" />
+        <script type="text/partytown" dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RH9LPW46VV');
+        `}} />
 
         {/* Microsoft Clarity */}
-        <Script
-          id="microsoft-clarity"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(c,l,a,r,i,t,y){
-                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "ujsyihkbft");
-            `,
-          }}
-        />
-        {/* End Microsoft Clarity */}
+        <script type="text/partytown" dangerouslySetInnerHTML={{ __html: `
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "ujsyihkbft");
+        `}} />
 
         <PublicLayout>{children}</PublicLayout>
       </body>

@@ -44,3 +44,4 @@ next-env.d.ts
 lighthouse*.json
 lighthouse*.html
 .env*.local
+public/~partytown
