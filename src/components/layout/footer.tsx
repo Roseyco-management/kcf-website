@@ -162,14 +162,14 @@ export function Footer() {
             &copy; {new Date().getFullYear()} KC Family Home Team. All rights reserved.
           </p>
           <p className="text-white/60 text-sm">
-            Made with care by{" "}
+            Website by{" "}
             <a
-              href="https://nexwave.dev"
+              href="https://roseyco.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accent transition-colors"
             >
-              Nexwave
+              RoseyCo
             </a>
           </p>
         </div>
