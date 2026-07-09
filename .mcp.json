@@ -1,13 +1,8 @@
 {
   "mcpServers": {
     "supabase": {
-      "command": "node",
-      "args": ["/Users/baileybarry/.claude/mcp-servers/supabase/index.js"],
-      "env": {
-        "SUPABASE_URL": "https://mgvphckcrsjsveutklka.supabase.co",
-        "SUPABASE_SERVICE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ndnBoY2tjcnNqc3ZldXRrbGthIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MjkyMTAyOCwiZXhwIjoyMDc4NDk3MDI4fQ.k1bL9bFg3dS3NNdA_uaZQJ7BEFB8CHrTMvkkPxwuLUY",
-        "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ndnBoY2tjcnNqc3ZldXRrbGthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI5MjEwMjgsImV4cCI6MjA3ODQ5NzAyOH0.TyDltmutxPylCkCbm0hRl6c1E1vxNQvdEAm2_ehzdkk"
-      }
+      "command": "scripts/mcp-supabase-env.sh",
+      "args": []
     }
   }
 }
