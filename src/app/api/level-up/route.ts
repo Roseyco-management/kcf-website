@@ -85,6 +85,27 @@ export async function POST(request: Request) {
       `,
     });
 
+    // Redacted agency notification to Elevateo — first name only, no contact
+    // details and NO quiz answers (GDPR data-minimisation). Best-effort; never
+    // blocks the admin alert above.
+    try {
+      await resend.emails.send({
+        from: "KC Family Home Team <noreply@kcfhomes.com>",
+        to: ["team@elevateoco.com"],
+        subject: "New lead — KC Family Home",
+        text: [
+          "New lead — KC Family Home",
+          `Name: ${String(fullName || "").split(" ")[0]}`,
+          "Interest: Level Up guide",
+          "Source: Level Up form",
+          "",
+          "Contact details & answers withheld — full lead sent to the client.",
+        ].join("\n"),
+      });
+    } catch (agencyError) {
+      console.error("Agency notify error:", agencyError);
+    }
+
     // Send confirmation email to user
     const userEmail = await resend.emails.send({
       from: "KC Family Home Team <noreply@kcfhomes.com>",
