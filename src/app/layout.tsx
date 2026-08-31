@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
-import { Partytown } from "@qwik.dev/partytown/react";
 import "./globals.css";
 import { PublicLayout } from "@/components/layout/public-layout";
 import { OrganizationSchema } from "@/components/seo/organization-schema";
@@ -102,13 +101,16 @@ export default function RootLayout({
         {/* Organization Schema */}
         <OrganizationSchema />
 
-        <Partytown
-          debug={process.env.NODE_ENV === 'development'}
-          forward={['dataLayer.push', 'gtag', 'fbq', 'clarity']}
-        />
+        {/* Analytics tags load on the main thread.
+            These previously ran through Partytown. Verified against the live
+            site on 2026-08-31: GA4 sent ZERO /g/collect beacons across three
+            page loads, while the Meta pixels and Clarity fired on all three.
+            Partytown forwards gtag/fbq into a web worker and was dropping the
+            queued gtag calls, so GA4 received nothing. Do not put these back
+            behind it. */}
 
         {/* Meta Pixel Code — KCF (1520686439196434) + Ernesto (26883368071312352) */}
-        <script type="text/partytown" dangerouslySetInnerHTML={{ __html: `
+        <script dangerouslySetInnerHTML={{ __html: `
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -143,8 +145,8 @@ export default function RootLayout({
         </noscript>
 
         {/* Google Analytics */}
-        <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RH9LPW46VV" />
-        <script type="text/partytown" dangerouslySetInnerHTML={{ __html: `
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RH9LPW46VV" />
+        <script dangerouslySetInnerHTML={{ __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
@@ -152,7 +154,7 @@ export default function RootLayout({
         `}} />
 
         {/* Microsoft Clarity */}
-        <script type="text/partytown" dangerouslySetInnerHTML={{ __html: `
+        <script dangerouslySetInnerHTML={{ __html: `
           (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
               t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
