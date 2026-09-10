@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { notifyAgencyLead } from "@/lib/agencyNotify";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -85,26 +86,14 @@ export async function POST(request: Request) {
       `,
     });
 
-    // Redacted agency notification to Elevateo — first name only, no contact
-    // details and NO quiz answers (GDPR data-minimisation). Best-effort; never
-    // blocks the admin alert above.
-    try {
-      await resend.emails.send({
-        from: "KC Family Home Team <noreply@kcfhomes.com>",
-        to: ["team@elevateoco.com"],
-        subject: "New lead — KC Family Home",
-        text: [
-          "New lead — KC Family Home",
-          `Name: ${String(fullName || "").split(" ")[0]}`,
-          "Interest: Level Up guide",
-          "Source: Level Up form",
-          "",
-          "Contact details & answers withheld — full lead sent to the client.",
-        ].join("\n"),
-      });
-    } catch (agencyError) {
-      console.error("Agency notify error:", agencyError);
-    }
+    // Agency lead notification — the ONE standard shape.
+    // See marketing-ide/docs/LEAD-NOTIFICATION-STANDARD.md. Zero PII by design.
+    await notifyAgencyLead({
+      client: "KC Family Home",
+      apiKey: process.env.RESEND_API_KEY!,
+      source: "Level Up form",
+      ownerLabel: "the client",
+    });
 
     // Send confirmation email to user
     const userEmail = await resend.emails.send({
