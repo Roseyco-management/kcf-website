@@ -78,7 +78,7 @@ export async function POST(request: Request) {
     // the admin alert above.
     try {
       await resend.emails.send({
-        from: "KC Family Home Team <noreply@kcfhomes.com>",
+        from: "KC Family Home Website <leads@roseyco.com>",
         to: ["team@elevateoco.com"],
         subject: "New lead — KC Family Home",
         text: [
