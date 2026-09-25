@@ -215,11 +215,12 @@ export default function AboutPage() {
               and dedication to serve Kansas City families with the care they deserve.
             </p>
             <p className="text-sm text-muted-foreground mt-6">
-              This website was designed and built by{" "}
-              <a href="https://www.roseyco.com/uk/services/web-development" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
-                Rosey Co&apos;s web development team
+              This website was designed and built by Rosey Co, a marketing agency helping local businesses rank on
+              Google. Read{" "}
+              <a href="https://www.roseyco.com/uk/case-studies/kcf-homes" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                the KCF Homes case study
               </a>
-              , a marketing agency helping local businesses rank on Google.
+              .
             </p>
           </div>
         </div>
