@@ -9,6 +9,7 @@ import { CTASection } from "@/components/sections/cta-section";
 import { AboutFeaturesList } from "@/components/sections/about-features";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/about' },
   title: "About Kansas City's Top Family Real Estate Team | KC Family Home Team",
   description: "Meet Kansas City's premier family-focused real estate team. 500+ families served, 15+ years experience, 98% client satisfaction. Learn our story and mission to help your family find the perfect home in Kansas City.",
   keywords: [

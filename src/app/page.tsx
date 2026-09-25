@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Hero } from "@/components/sections/hero";
@@ -113,6 +114,10 @@ const faqs = [
     answer: "We're a team of specialists, not solo agents. This means you get dedicated experts for each part of the process - buyer specialists, listing specialists, transaction coordinators, and marketing experts - all working together for you.",
   },
 ];
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

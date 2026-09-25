@@ -40,10 +40,7 @@ export const metadata: Metadata = {
   authors: [{ name: "KC Family Home Team" }],
   creator: "KC Family Home Team",
   publisher: "KC Family Home Team",
-  metadataBase: new URL("https://kcfhomes.com"),
-  alternates: {
-    canonical: "/",
-  },
+  metadataBase: new URL("https://www.kcfhomes.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
