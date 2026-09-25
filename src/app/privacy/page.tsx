@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { SectionWrapper } from "@/components/sections/section-wrapper";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export default function PrivacyPage() {
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
           <p className="text-muted-foreground mb-8">
-            Last updated: December 2024
+            Last updated: September 2026
           </p>
 
           <div className="prose prose-lg max-w-none">
@@ -43,6 +44,15 @@ export default function PrivacyPage() {
               We may share your information with service providers assisting our business operations, such as hosting,
               CRM, and analytics providers. Information may also be disclosed to comply with legal requirements or in
               the event of a business transfer like a merger or acquisition.
+            </p>
+
+            <h2>Cookies and Tracking</h2>
+            <p>
+              We use Google Analytics and Microsoft Clarity to understand how the website is used, and the Meta Pixel to
+              measure our Facebook and Instagram advertising. These tools use cookies and may share information such as
+              pages visited and device details with Google, Microsoft and Meta. Contact form messages are delivered to us
+              by email through Resend, and the website is hosted by Vercel and maintained by our web agency, Rosey Co.
+              See our <Link href="/cookie-policy">Cookie Policy</Link> for the cookies used and how to opt out.
             </p>
 
             <h2>Data Security</h2>

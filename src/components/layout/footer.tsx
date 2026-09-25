@@ -14,6 +14,7 @@ const mainPages = [
   { href: "/how-it-works", label: "How It Works" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms of Service" },
+  { href: "/cookie-policy", label: "Cookie Policy" },
 ];
 
 const socialLinks = [
@@ -164,12 +165,12 @@ export function Footer() {
           <p className="text-white/60 text-sm">
             Website by{" "}
             <a
-              href="https://roseyco.com"
+              href="https://www.roseyco.com/uk/services/web-development"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accent transition-colors"
             >
-              RoseyCo
+              Rosey Co
             </a>
           </p>
         </div>

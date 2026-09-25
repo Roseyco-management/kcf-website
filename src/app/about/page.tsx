@@ -213,6 +213,13 @@ export default function AboutPage() {
               Every day, we wake up with the same passion
               and dedication to serve Kansas City families with the care they deserve.
             </p>
+            <p className="text-sm text-muted-foreground mt-6">
+              This website was designed and built by{" "}
+              <a href="https://www.roseyco.com/uk/services/web-development" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                Rosey Co&apos;s web development team
+              </a>
+              , a marketing agency helping local businesses rank on Google.
+            </p>
           </div>
         </div>
       </SectionWrapper>
