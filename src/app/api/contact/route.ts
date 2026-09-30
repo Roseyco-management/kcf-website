@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { notifyAgencyLead } from "@/lib/agencyNotify";
+import { postLeadToRca } from "@/lib/rca-leads";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, message, honeypot } = body;
+    const { name, email, phone, message, honeypot, attribution } = body;
 
     // Bot check - if honeypot is filled, reject silently
     if (honeypot) {
@@ -82,6 +83,23 @@ export async function POST(request: Request) {
       source: "Contact form",
       ownerLabel: "the client",
     });
+
+    // Mirror the lead into RoseyCo Analytics for cost-per-lead reporting.
+    // Best-effort and non-blocking — never throws, never affects the
+    // response below. Only first name (no PII) and attribution are sent.
+    try {
+      await postLeadToRca({
+        external_id: crypto.randomUUID(),
+        source: "website form",
+        first_name: name ? String(name).split(" ")[0] : undefined,
+        attribution: {
+          form: "contact",
+          ...(attribution && typeof attribution === "object" ? attribution : {}),
+        },
+      });
+    } catch (rcaError) {
+      console.error("RCA lead mirror error:", rcaError);
+    }
 
     // Send confirmation email to user
     const userEmail = await resend.emails.send({
