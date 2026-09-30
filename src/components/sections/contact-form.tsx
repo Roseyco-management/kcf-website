@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle, Loader2 } from "lucide-react";
+import { getAttribution } from "@/lib/attribution";
 
 interface ContactFormProps {
   onSubmit?: (data: FormData) => Promise<void>;
@@ -52,7 +53,14 @@ export function ContactForm({ onSubmit, variant = "default" }: ContactFormProps)
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ...formData, honeypot }),
+          body: JSON.stringify({
+            ...formData,
+            honeypot,
+            attribution: {
+              ...getAttribution(),
+              page_url: window.location.href,
+            },
+          }),
         });
 
         if (!response.ok) {
