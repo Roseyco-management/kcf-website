@@ -1,3 +1,8 @@
+// src/data/sold-properties.ts
+// Hand-curated sold cards. Since Nov 2026 the homepage renders live MLS data (src/lib/listings.ts);
+// this list is only the fallback shown when that feed is unavailable or empty.
+// RELEVANT FILES: src/components/sections/static-sold-grid.tsx, src/components/sections/recent-sales.tsx
+
 export interface SoldProperty {
   address: string;
   image: string;

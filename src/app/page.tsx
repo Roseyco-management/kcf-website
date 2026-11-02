@@ -11,6 +11,7 @@ import { FAQSection } from "@/components/sections/faq-section";
 import { CTASection } from "@/components/sections/cta-section";
 import { HomepageSchema } from "@/components/seo/homepage-schema";
 import { RecentSales } from "@/components/sections/recent-sales";
+import { ActiveListings } from "@/components/sections/active-listings";
 import { googleReviews } from "@/data/reviews";
 
 // Stats Data
@@ -139,7 +140,8 @@ export default function HomePage() {
       {/* Stats Section - Prominent band */}
       <StatsSection stats={stats} variant="band" />
 
-      {/* Recent Sales Section */}
+      {/* Live MLS sections: current listings (hidden when none) and recently sold */}
+      <ActiveListings />
       <RecentSales />
 
       {/* About Section */}
