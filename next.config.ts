@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
 
   // Image optimization
   images: {
+    // MLS listing photos are served by the intake platform's photo proxy (see src/lib/listings.ts).
+    remotePatterns: [
+      { protocol: 'https', hostname: 'intake.kcfhomes.com', pathname: '/api/public/website-listings/photo/**' },
+    ],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
