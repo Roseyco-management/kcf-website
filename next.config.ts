@@ -16,7 +16,13 @@ const nextConfig: NextConfig = {
     // MLS listing photos are served by the intake platform's photo proxy (see src/lib/listings.ts).
     remotePatterns: [
       { protocol: 'https', hostname: 'intake.kcfhomes.com', pathname: '/api/public/website-listings/photo/**' },
+      // Local visual QA against a locally running intake app (LISTINGS_API_URL); never in production.
+      ...(process.env.NODE_ENV !== 'production'
+        ? [{ protocol: 'http' as const, hostname: 'localhost', pathname: '/api/public/website-listings/photo/**' }]
+        : []),
     ],
+    // Dev-only too: the optimizer refuses private upstream IPs, which localhost resolves to.
+    ...(process.env.NODE_ENV !== 'production' ? { dangerouslyAllowLocalIP: true } : {}),
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

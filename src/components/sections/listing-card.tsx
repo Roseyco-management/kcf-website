@@ -24,7 +24,9 @@ export function ListingCard({ listing, index }: ListingCardProps) {
   // because the site has no listing detail page and the point is to start a conversation.
   const href = isSold ? (slug ? `/neighborhoods/${slug}` : "/contact") : "/contact";
   const cta = isSold ? (slug ? "View Neighborhood" : "Talk to an Agent") : "Ask About This Home";
-  const price = formatPrice(isSold ? listing.closePrice ?? listing.listPrice : listing.listPrice);
+  // Sold prices stay off the public site: MLS display rules restrict sold-data display outside
+  // a registered VOW, and the card reads fine with month + facts. Active cards show list price.
+  const price = isSold ? null : formatPrice(listing.listPrice);
   const facts = formatFacts(listing);
   const soldMonth = isSold ? formatCloseMonth(listing.closeDate) : null;
 

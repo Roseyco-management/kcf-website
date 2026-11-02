@@ -62,11 +62,14 @@ export async function fetchListings(): Promise<MlsListingsPayload | null> {
     if (!body || typeof body !== "object") return null;
     const { active, sold, updatedAt, backfillComplete } = body as Partial<MlsListingsPayload>;
     if (!Array.isArray(active) || !Array.isArray(sold)) return null;
+    // Cards without a photo look broken next to ones with; MLS media copies can lag the
+    // listing data by a day (media host quota), so photo-less rows are simply held back.
+    const withPhoto = (listing: MlsListing) => listing.photoUrl !== null;
     return {
       updatedAt: typeof updatedAt === "string" ? updatedAt : null,
       backfillComplete: backfillComplete === true,
-      active: active.filter(isListing),
-      sold: sold.filter(isListing),
+      active: active.filter(isListing).filter(withPhoto),
+      sold: sold.filter(isListing).filter(withPhoto),
     };
   } catch (error) {
     console.warn("[listings] fetch failed", error instanceof Error ? error.message : error);
